@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISANGE.rw | Gura & Kodesha Inzu mu Rwanda Hose</title>
+    <style>
+        :root {
+            --primary: #0f766e;
+            --primary-dark: #115e59;
+            --secondary: #f59e0b;
+            --bg-light: #f1f5f9;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .btn-post {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+
+        .btn-post:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-admin {
+            background-color: var(--secondary);
+            color: var(--text-dark);
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(15, 118, 110, 0.88), rgba(17, 94, 89, 0.92)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80') center/cover;
+            color: var(--white);
+            padding: 4rem 2rem 5.5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 780px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        /* Search Box (5 Levels) */
+        .search-container {
+            max-width: 1300px;
+            margin: -3.5rem auto 2.5rem auto;
+            background: var(--white);
+            padding: 1.8rem;
+            border-radius: 12px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .form-group select, .form-group input {
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            background-color: var(--white);
+            outline: none;
+        }
+
+        .form-group select:disabled {
+            background-color: #f8fafc;
+            color: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        .form-group select:focus, .form-group input:focus {
+            border-color: var(--primary);
+        }
+
+        .btn-search {
+            background-color: var(--secondary);
+            color: var(--text-dark);
+            font-weight: 700;
+            border: none;
+            border-radius: 6px;
+            padding: 11px;
+            cursor: pointer;
+            margin-top: auto;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+
+        .btn-search:hover {
+            filter: brightness(0.95);
+        }
+
+        /* Listings */
+        .container {
+            max-width: 1320px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: transform 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img-wrap {
+            position: relative;
+            height: 215px;
+        }
+
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .badge-rent { background-color: var(--primary); }
+        .badge-buy { background-color: #dc2626; }
+
+        .card-body {
+            padding: 1.25rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .location-tag {
+            font-size: 0.82rem;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            background: #f1f5f9;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .features {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 10px;
+        }
+
+        .card-actions {
+            margin-top: auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-contact {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .btn-whatsapp { background-color: #25D366; color: white; }
+        .btn-call { background-color: #e2e8f0; color: var(--text-dark); }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 640px;
+            width: 100%;
+            max-height: 92vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        .close-btn {
+            font-size: 1.6rem;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: var(--text-muted);
+        }
+
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .full-width { grid-column: span 2; }
+
+        footer {
+            background-color: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            margin-top: 4rem;
+        }
+
+        footer strong { color: var(--white); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+            .modal-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="navbar">
+            <a href="#" class="logo">🏠 ISANGE<span>.rw</span></a>
+            <div class="nav-links">
+                <a href="#amazu">Amazu Yose</a>
+                <button class="btn-post" onclick="openModal()">+ Shyiraho Inzu</button>
+                <button class="btn-admin" onclick="openAdminPanel()">⚙️ Admin Panel</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>Isange mu Nzu yawe mu Rwanda Hose</h1>
+        <p>Kodesha cyangwa ugure inzu mu buryo bwizewe. Hitamo Intara, Akarere, Umurenge, Akagari n'Umudugudu wifuza guturamo.</p>
+    </section>
+
+    <!-- SEARCH BAR (INTARA -> AKARERE -> UMURENGE -> AKAGARI -> UMUDUGUDU) -->
+    <div class="search-container">
+        <div class="search-title">📍 Shakisha ukurikije Intara, Akarere, Umurenge, Akagari n'Umudugudu:</div>
+        <div class="filter-grid">
+            <div class="form-group">
+                <label>Igikorwa</label>
+                <select id="filterType">
+                    <option value="all">Byose (Gukodesha & Kugura)</option>
+                    <option value="Gukodesha">Gukodesha (Rent)</option>
+                    <option value="Kugura">Kugura (Buy)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>1. Intara / Umujyi</label>
+                <select id="provinceSelect" onchange="handleProvinceChange('search')">
+                    <option value="">-- Hitamo Intara --</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>2. Akarere</label>
+                <select id="districtSelect" onchange="handleDistrictChange('search')" disabled>
+                    <option value="">-- Hitamo Akarere --</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>3. Umurenge</label>
+                <select id="sectorSelect" onchange="handleSectorChange('search')" disabled>
+                    <option value="">-- Hitamo Umurenge --</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>4. Akagari</label>
+                <select id="cellSelect" onchange="handleCellChange('search')" disabled>
+                    <option value="">-- Hitamo Akagari --</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>5. Umudugudu</label>
+                <select id="villageSelect" disabled>
+                    <option value="">-- Hitamo Umudugudu --</option>
+                </select>
+            </div>
+
+            <button class="btn-search" onclick="filterProperties()">🔍 Shakisha</button>
+        </div>
+    </div>
+
+    <!-- LISTINGS -->
+    <main class="container" id="amazu">
+        <div class="section-header">
+            <h2 id="resultsTitle">Amazu Aboneka Kuri Isange</h2>
+            <button onclick="resetFilters()" style="background:white; border:1px solid #cbd5e1; padding:8px 14px; border-radius:6px; cursor:pointer; font-weight:600;">Erekana amazu yose</button>
+        </div>
+        <div class="properties-grid" id="propertiesGrid"></div>
+    </main>
+
+    <!-- MODAL: ADD NEW PROPERTY -->
+    <div class="modal" id="postModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Shyiraho Inzu Kuri Isange</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <form id="addPropertyForm" onsubmit="addNewProperty(event)">
+                <div class="modal-grid">
+                    <div class="form-group full-width">
+                        <label>Umutwe w'itangazo (Urugero: Inzu nziza i Nyamata)</label>
+                        <input type="text" id="newTitle" required placeholder="Andika izina ry'inzu...">
+                    </div>
+                    <div class="form-group">
+                        <label>Igikorwa</label>
+                        <select id="newType" required>
+                            <option value="Gukodesha">Gukodesha</option>
+                            <option value="Kugura">Kugura</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Igiciro (RWF)</label>
+                        <input type="number" id="newPrice" required placeholder="Urugero: 250000">
+                    </div>
+
+                    <!-- 5 LEVELS IN MODAL -->
+                    <div class="form-group">
+                        <label>1. Intara</label>
+                        <select id="modalProvince" onchange="handleProvinceChange('modal')" required>
+                            <option value="">Hitamo Intara</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>2. Akarere</label>
+                        <select id="modalDistrict" onchange="handleDistrictChange('modal')" required disabled>
+                            <option value="">Hitamo Akarere</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>3. Umurenge</label>
+                        <select id="modalSector" onchange="handleSectorChange('modal')" required disabled>
+                            <option value="">Hitamo Umurenge</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>4. Akagari</label>
+                        <select id="modalCell" onchange="handleCellChange('modal')" required disabled>
+                            <option value="">Hitamo Akagari</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>5. Umudugudu</label>
+                        <select id="modalVillage" required disabled>
+                            <option value="">Hitamo Umudugudu</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ibyumba (Bedrooms)</label>
+                        <input type="number" id="newBeds" value="3" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Ubwogero (Bathrooms)</label>
+                        <input type="number" id="newBaths" value="2" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nimero ya Telefoni / WhatsApp</label>
+                        <input type="text" id="newPhone" required placeholder="0788000000">
+                    </div>
+                    <div class="form-group">
+                        <label>Ifoto y'Inzu (Hitamo kuri Device)</label>
+                        <input type="file" id="newImageFile" accept="image/*">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <button type="submit" class="btn-post" style="width:100%; padding:12px; margin-top:8px;">Ohereza (Itegereje Kwemezwa na Admin)</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: ADMIN PANEL (APPROVE PENDING PROPERTIES) -->
+    <div class="modal" id="adminModal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3>⚙️ Admin Panel - Kwemera Amazu Mashya</h3>
+                <button class="close-btn" onclick="closeAdminPanel()">&times;</button>
+            </div>
+            <div id="adminContent">
+                <!-- Ahanditse urutonde rw'amazu ategereje approve -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <strong>ISANGE.rw</strong> - Urubuga rwo gukodesha no kugura inzu mu Ntara zose z'u Rwanda.</p>
+        <p style="font-size: 0.85rem; margin-top: 5px;">Umujyi wa Kigali • Iburasirazuba • Amajyaruguru • Iburengerazuba • Amajyepfo</p>
+    </footer>
+
+    <script>
+        // =========================================================================
+        // 1. INZEGO Z'UBUYOBOZI Z'U RWANDA
+        // =========================================================================
+        const rwandaAdminData = {
+            "Umujyi wa Kigali": {
+                "Gasabo": {
+                    "Remera": ["Rukiri I", "Rukiri II", "Nyabisindu", "Nyarutarama"],
+                    "Kimironko": ["Bibare", "Kibagabaga", "Nyagatovu"],
+                    "Kacyiru": ["Kamatamu", "Kamutwa", "Kibaza"],
+                    "Gisozi": ["Musezero", "Ruhango"],
+                    "Kinyinya": ["Gacuriro", "Gasharu", "Kagugu", "Murama"],
+                    "Bumbogo": ["Kinyaga", "Musave", "Mvuzo", "Ngara", "Nkuzuzu", "Nyabikenke", "Nyagasozi"],
+                    "Gatsata": ["Karuruma", "Nyamabuye", "Nyamugari"],
+                    "Jali": ["Agateko", "Buhiza", "Muko", "Nkusi", "Nyabuliba", "Nyakabungo", "Nyamitanga"],
+                    "Jabana": ["Akamatamu", "Bweramvura", "Cyeyere", "Kabuye", "Ngiryi"],
+                    "Nduba": ["Butare", "Gasanze", "Gasura", "Gatunga", "Muremure", "Sha", "Shango"],
+                    "Ndera": ["Bwiza", "Cyaruzinge", "Kibenga", "Masoro", "Mukuyu", "Rudashya"],
+                    "Rusororo": ["Bisenga", "Gasagara", "Kabuga I", "Kabuga II", "Kinyana", "Mbandazi", "Nyagahinga", "Ruhanga"],
+                    "Rutunga": ["Gasabo", "Indatemwa", "Kabaliza", "Kacyatwa", "Kibenga", "Kigabiro"]
+                },
+                "Kicukiro": {
+                    "Kanombe": ["Busanza", "Kabeza", "Karama", "Rubirizi"],
+                    "Niboye": ["Gatare", "Niboye", "Nyakabanda"],
+                    "Gahanga": ["Gahanga", "Kagasa", "Karembure", "Murinja", "Nunga", "Rwabutenge"],
+                    "Gatenga": ["Gatenga", "Karambo", "Nyanza", "Nyarurama"],
+                    "Gikondo": ["Kagunga", "Kanserege", "Kinunga"],
+                    "Kagarama": ["Kanserege", "Kicukiro", "Muyange"],
+                    "Kicukiro": ["Gasharu", "Kagarama", "Ngoma", "Nyandungu"],
+                    "Kigarama": ["Bwerankori", "Karugira", "Kigarama", "Nyarurama", "Rwampara"],
+                    "Masaka": ["Ayabaraya", "Cyimo", "Gako", "Gitagara", "Mbabe", "Rusheshe"],
+                    "Nyarugunga": ["Kamashashi", "Nonko", "Rwimbogo"]
+                },
+                "Nyarugenge": {
+                    "Nyamirambo": ["Cyivugiza", "Gasharu", "Mumena", "Rugarama"],
+                    "Muhima": ["Amahoro", "Kabasengerezi", "Kabeza", "Nyabugogo", "Rugenge", "Tetero", "Ubumwe"],
+                    "Gitega": ["Akabahizi", "Akabeza", "Gacyamo", "Kigarama", "Kinyange", "Kora"],
+                    "Kanyinya": ["Nyamweru", "Nzove", "Taba"],
+                    "Kigali": ["Kigali", "Mwendo", "Nyabugogo", "Ruriba", "Rwesero"],
+                    "Kimisagara": ["Kamuhoza", "Katabaro", "Kimisagara"],
+                    "Mageragere": ["Kankuba", "Kavumu", "Mataba", "Ntungamo", "Runzenze", "Rushubi"],
+                    "Nyakabanda": ["Munanira I", "Munanira II", "Nyakabanda I", "Nyakabanda II"],
+                    "Nyarugenge": ["Agatare", "Biryogo", "Kiyovu", "Rwampara"],
+                    "Rwezamenyo": ["Kabuguru I", "Kabuguru II", "Rwezamenyo I", "Rwezamenyo II"]
+                }
+            },
+            "Intara y'Iburasirazuba": {
+                "Bugesera": {
+                    "Nyamata": ["Kanazi", "Kayumba", "Maranyundo", "Murama", "Nyamata Ville"],
+                    "Mayange": ["Gakamba", "Kagenge", "Kibenga", "Mbyo"],
+                    "Ntarama": ["Cyugaro", "Kanzenze", "Kibungo"],
+                    "Rilima": ["Kabeza", "Karera", "Kimaranzara", "Ntarama", "Nyabagendwa"],
+                    "Gashora": ["Biryogo", "Kagomasi", "Mwendo", "Ramiro"],
+                    "Juru": ["Juru", "Kabukuba", "Mugorore", "Musovu", "Rwinume"],
+                    "Kamabuye": ["Biharagu", "Burenge", "Kampeka", "Nyakayaga", "Tunda"],
+                    "Mareba": ["Bushenyi", "Gakomeye", "Nyamigina", "Rugarama", "Rukoyoyo"],
+                    "Musenyi": ["Gicaca", "Musenyi", "Nyagihunika", "Rulindo"],
+                    "Mwogo": ["Bitaba", "Kagasa", "Rugarama", "Rugunga"],
+                    "Ngeruka": ["Gihembe", "Murama", "Ngeruka", "Nyakayenzi", "Rutonde"],
+                    "Nyarugenge": ["Gihinga", "Kabuye", "Murama", "Ngenda", "Rugando"],
+                    "Ruhuha": ["Bihari", "Gikundamvura", "Gatanga", "Kindama", "Ruhuha"],
+                    "Rweru": ["Batima", "Kintambwe", "Mazane", "Nemba", "Nkanga", "Sharita"],
+                    "Shyara": ["Kabagugu", "Kamabuye", "Nziranziza", "Rebero", "Rutare"]
+                },
+                "Rwamagana": {
+                    "Kigabiro": ["Cyanya", "Nyagasenyi", "Rugarama", "Sibagire", "Sovu"],
+                    "Muhazi": ["Byeza", "Kabare", "Karambi", "Karitutu", "Kitazigurwa", "Murambi", "Ntebe", "Nyarusange", "Rukira"],
+                    "Munyaga": ["Kaduha", "Nkungu", "Rweru", "Zinga"],
+                    "Munyiginya": ["Binunga", "Bwana", "Cyarukamba", "Cyimbazi", "Nkomangwa", "Nyagahandagaza"],
+                    "Musha": ["Akabare", "Budahanda", "Kagarama", "Musha", "Nyabisindu", "Nyakabanda"],
+                    "Muyumbu": ["Akinyambo", "Bujyujyu", "Murehe", "Ntebe", "Nyarukombe"],
+                    "Mwulire": ["Bicumbi", "Bushenyi", "Mwulire", "Ntunga"],
+                    "Nyakariro": ["Bihembe", "Gatare", "Gishore", "Munini", "Rukira"],
+                    "Nzige": ["Akanzu", "Kigarama", "Murama", "Rugarama"],
+                    "Rubona": ["Byinza", "Kabuye", "Kabarondo", "Mabare", "Nawe", "Runyinya"]
+                },
+                "Kayonza": {
+                    "Mukarange": ["Bwiza", "Kayonza", "Mburabuturo", "Nyagatovu", "Rugendabari"],
+                    "Kabarondo": ["Cyabajwa", "Cyinzovu", "Kabura", "Rusera"],
+                    "Gahini": ["Juru", "Kahi", "Kiyenzi", "Urugarama"],
+                    "Kabare": ["Cyarubare", "Gitara", "Kirehe", "Rubimba", "Rubumba"],
+                    "Murama": ["Bunyentongo", "Muko", "Murama", "Nyakanazi", "Rusave"],
+                    "Murundi": ["Buhabwa", "Karambi", "Murundi", "Ryamanyoni"],
+                    "Mwiri": ["Kageyo", "Kiburara", "Migera", "Nyawera"],
+                    "Ndego": ["Byimana", "Isangano", "Karambi", "Kiyovu"],
+                    "Nyamirama": ["Gikaya", "Musumba", "Rurambi", "Shyogo"],
+                    "Rukara": ["Kawangire", "Rukara", "Rwimishinya"],
+                    "Ruramira": ["Bugambira", "Nkamba", "Ruramira", "Umubuga"],
+                    "Rwinkwavu": ["Gihinga", "Mbarara", "Mukoyoyo", "Nkondo"]
+                },
+                "Ngoma": {
+                    "Kibungo": ["Cyasemakamba", "Gahima", "Gatonde", "Karenge", "Mahango"],
+                    "Gashanda": ["Cyerwa", "Gasetsa", "Munege", "Mutsindo"],
+                    "Jarama": ["Ihanika", "Jarama", "Karenge", "Kibimba", "Kigoma"],
+                    "Karembo": ["Akaziba", "Karaba", "Nyamugari"],
+                    "Kazo": ["Birenga", "Gahurire", "Karama", "Kinyonzo", "Umukamba"],
+                    "Mugesera": ["Akabungo", "Mugatare", "Nyange", "Nyamugari"],
+                    "Murama": ["Gitaraga", "Kigabiro", "Mvozwa", "Rukoma", "Sakara"],
+                    "Mutenderi": ["Karwema", "Kibare", "Mutenderi", "Muzingira", "Nyagasozi"],
+                    "Remera": ["Bugera", "Kinunga", "Ndekwe", "Rurenge"],
+                    "Rukira": ["Buliba", "Kibatsi", "Nyaruvumu", "Nyinya"],
+                    "Rukumberi": ["Gituza", "Ntovi", "Rubago", "Rubona", "Rwarugaju"],
+                    "Rurenge": ["Akagarama", "Muhurire", "Musya", "Rujambara", "Rurenge"],
+                    "Sake": ["Gafunzo", "Kibonde", "Nkanga", "Rukoma"],
+                    "Zaza": ["Nyagatugunda", "Nyagihanga", "Ruhembe", "Ruhinga"]
+                },
+                "Kirehe": {
+                    "Kirehe": ["Gahama", "Kirehe", "Nyabigega", "Nyabikokora", "Rwesero"],
+                    "Gahara": ["Butezi", "Muhamba", "Murehe", "Nyagasenyi", "Rubimba"],
+                    "Gatore": ["Curazo", "Cyunuzi", "Muganza", "Nyamiryango", "Rwantonde"],
+                    "Kigarama": ["Cyanya", "Kigarama", "Kiremera", "Nyakerera", "Nyankurazo"],
+                    "Kigina": ["Gatarama", "Muguruka", "Ruhanga", "Rwanteru"],
+                    "Mahama": ["Kamombo", "Munini", "Mwoga", "Saruhembe", "Umunini"],
+                    "Mpanga": ["Bwahanga", "Kankobwa", "Mpanga", "Mushongi", "Nasho", "Nyakabungo", "Rubaya"],
+                    "Musaza": ["Gasarabwayi", "Kabuga", "Mubuga", "Musaza", "Nganda"],
+                    "Mushikiri": ["Bisagara", "Cyamigurwa", "Rugarama", "Rwantonde", "Rwayikona"],
+                    "Nasho": ["Cyambwe", "Kagese", "Ntaruka", "Rubirizi", "Rugoma"],
+                    "Nyamugari": ["Bukora", "Kagasa", "Kazizi", "Kiyanzi", "Nyamugari"],
+                    "Nyarubuye": ["Mareba", "Nyabitare", "Nyarutunga"]
+                },
+                "Gatsibo": {
+                    "Kabarore": ["Kabarore", "Kabeza", "Karenge", "Marimba", "Nyabikiri", "Simbwa"],
+                    "Gasange": ["Kigabiro", "Kimana", "Teme", "Viro"],
+                    "Gatsibo": ["Gatsibo", "Manishya", "Mugera", "Nyabicwamba", "Nyagahanga"],
+                    "Gitoki": ["Bukomane", "Cyabusheshe", "Karubungo", "Mpondwa", "Nyamirama", "Rubira"],
+                    "Kageyo": ["Busetsa", "Gituza", "Kintu", "Nyagisozi"],
+                    "Kiramuruzi": ["Akabuga", "Gakenke", "Gakoni", "Nyabisindu"],
+                    "Kiziguro": ["Agakomeye", "Mbogo", "Ndatemwa", "Rubona"],
+                    "Muhura": ["Bibare", "Gakorokombe", "Mamfu", "Rumuli", "Taba"],
+                    "Murambi": ["Murambi", "Nyamiyaga", "Rwankuba", "Rwikiniro"],
+                    "Ngarama": ["Bugamba", "Karambi", "Kigasha", "Ngarama", "Nyarubungo"],
+                    "Nyagihanga": ["Gitinda", "Kibare", "Mayange", "Murambi", "Nyamwiza", "Rwimbogo"],
+                    "Remera": ["Bushobora", "Butiruka", "Kigabiro", "Nyagakombe", "Rurenge"],
+                    "Rugarama": ["Bugarama", "Gihuta", "Kanyangese", "Matare", "Matunguru", "Remera"],
+                    "Rwimbogo": ["Kiburara", "Munini", "Nyamatete", "Rwikiniro"]
+                },
+                "Nyagatare": {
+                    "Nyagatare": ["Barija", "Bushoga", "Cyabayaga", "Gakirage", "Kamagiri", "Nsheke", "Nyagatare", "Rutaraka", "Ryabega"],
+                    "Gatunda": ["Cyagaju", "Kabeza", "Nyamikamba", "Nyangara", "Rwimirama"],
+                    "Karama": ["Bushara", "Cyenkwanzi", "Gikagati", "Kabuga", "Ndego"],
+                    "Karangazi": ["Kamate", "Kizirakome", "Mbare", "Musenyi", "Ndama", "Nyagashanga", "Rwenyemera", "Rwisirabo"],
+                    "Katabagemu": ["Bayigaburire", "Kaduha", "Kanyeganyege", "Katabagemu", "Nyakigando", "Rubira", "Rugoma", "Rutoma"],
+                    "Kiyombe": ["Gataba", "Gitenga", "Kabungo", "Karambo", "Kiyombe", "Tovu"],
+                    "Matimba": ["Byimana", "Cyembogo", "Kagitumba", "Kanyonza", "Matimba", "Nyabwishongwezi", "Rwentanga"],
+                    "Mimuri": ["Bibare", "Gakoma", "Mahoro", "Mimuri", "Rugari"],
+                    "Mukama": ["Bufunda", "Gatete", "Gihengeri", "Gishororo", "Kagina", "Karama", "Rugarama"],
+                    "Musheri": ["Kibirizi", "Kijojo", "Musheri", "Ntoma", "Nyagatabire", "Rugarama"],
+                    "Rukomo": ["Gahurura", "Gashenyi", "Nyakagarama", "Rukomo II", "Rurenge"],
+                    "Rwempasha": ["Cyenjojo", "Gakoma", "Kazaza", "Mishenyi", "Rukorota", "Rutare", "Rwempasha"],
+                    "Rwimiyaga": ["Bugaragara", "Gacundezi", "Kabeza", "Kirebe", "Ntoma", "Nyarupfubire", "Nyendo", "Rutungu"],
+                    "Tabagwe": ["Gishara", "Gitengure", "Kaborogota", "Nkoma", "Nyabitekeri", "Nyagatoma", "Shonga", "Tabagwe"]
+                }
+            },
+            "Intara y'Amajyaruguru": {
+                "Musanze": {
+                    "Muhoza": ["Cyabararika", "Kigombe", "Mpenge", "Ruhengeri"],
+                    "Kinigi": ["Bisoke", "Kaguhu", "Kampanga", "Nyabigoma", "Nyonirima"],
+                    "Busogo": ["Gisesero", "Kavumu", "Nyagisozi", "Sahunga"],
+                    "Cyuve": ["Bukinanyana", "Buranira", "Cyanya", "Kabeza", "Migeshi", "Rwebeya"],
+                    "Gacaca": ["Gasakuza", "Gakoro", "Karwasa", "Kibuguzo"],
+                    "Gashaki": ["Kigabiro", "Kivumu", "Mbwe", "Muharuro"],
+                    "Gataraga": ["Mudakama", "Murago", "Rubindi", "Rungu"],
+                    "Kimonyi": ["Birira", "Buramira", "Kivumu", "Mbizi"],
+                    "Muko": ["Cyogo", "Cyivugiza", "Mburabuturo", "Songa"],
+                    "Musanze": ["Cyabagarura", "Garuka", "Kabazungu", "Nyarubuye", "Rwambogo"],
+                    "Nkotsi": ["Bikara", "Gashinga", "Mubago", "Rugeshi", "Ruyumba"],
+                    "Nyange": ["Cyivugiza", "Kabeza", "Kamwumba", "Muhabura", "Ninda"],
+                    "Remera": ["Gasongero", "Kamisave", "Murandi", "Murwa", "Rurambo"],
+                    "Rwaza": ["Bumara", "Kabushinge", "Musezero", "Nturo", "Nyarusazi"],
+                    "Shingiro": ["Gakingo", "Kibuguzo", "Mudende", "Mugari"]
+                },
+                "Gicumbi": {
+                    "Byumba": ["Gacuriro", "Gisuna", "Kibali", "Murama", "Ngondore", "Nyamabuye", "Nyarutarama", "Rukomo"],
+                    "Bukure": ["Karenge", "Kigabiro", "Mubuga", "Rukizi", "Rwesero"],
+                    "Bwisige": ["Bwisige", "Gihuke", "Mukono", "Nyabushingitwa"],
+                    "Cyumba": ["Gasunzu", "Muhambo", "Nyakabungo", "Nyaruka", "Rusekera"],
+                    "Giti": ["Cyuru", "Gatobotobo", "Murehe", "Tanda"],
+                    "Kageyo": ["Gihembe", "Horezo", "Kabuga", "Muhondo", "Nyamiyaga"],
+                    "Kaniga": ["Bugomba", "Gatoma", "Mulindi", "Nyamiyaga", "Rukurura"],
+                    "Manyagiro": ["Kabuga", "Kabasheja", "Nyiragifumba", "Nyiravugiza", "Remera", "Rusekera"],
+                    "Miyove": ["Kabeza", "Mubuga", "Mushasha"],
+                    "Mukarange": ["Cyamuganga", "Gatenga", "Kiruhura", "Mutama", "Rugarama", "Rugerero"],
+                    "Muko": ["Cyamuhinda", "Kigoma", "Mwendo", "Rebero"],
+                    "Mutete": ["Gaseke", "Kabeza", "Musenyi", "Mutandi", "Nyarubuye", "Rusasa"],
+                    "Nyamiyaga": ["Jomba", "Kabahigi", "Kabeza", "Karambo", "Kiziba", "Mataba", "Umutara"],
+                    "Nyankenke": ["Butare", "Kabeza", "Kigogo", "Kinishya", "Rukore", "Rusasa"],
+                    "Rubaya": ["Gihanga", "Muguramo", "Nyamiyaga", "Rukizi"],
+                    "Rukomo": ["Cyeya", "Gishari", "Kinyami", "Mabare", "Munyinya", "Rukomo"],
+                    "Rushaki": ["Gitega", "Kamutora", "Karurama"],
+                    "Rutare": ["Bikumba", "Gasharu", "Gatwaro", "Kigabiro", "Munanira", "Nkoto"],
+                    "Ruvune": ["Cyandaro", "Gashirira", "Kabare", "Nyarwambu", "Rebero", "Ruhondo"],
+                    "Rwamiko": ["Cyeru", "Kigabiro", "Nyagahinga"],
+                    "Shangasha": ["Bushara", "Kitazigurwa", "Nyabishambi", "Nyarubuye"]
+                },
+                "Burera": {
+                    "Cyanika": ["Gisovu", "Kagoma", "Kamanyana", "Kabyiniro", "Nyagahinga"],
+                    "Butaro": ["Gatsibo", "Mubuga", "Muhotora", "Nyamicucu", "Rusumo"],
+                    "Cyeru": ["Butare", "Ndago", "Ruyange"],
+                    "Gahunga": ["Gisizi", "Kidakama", "Nyangwe", "Rusekera"],
+                    "Gatebe": ["Gabiro", "Musenda", "Rwambogo", "Rwangara"],
+                    "Gitovu": ["Marangara", "Musasa", "Runoga"],
+                    "Kagogo": ["Kabaya", "Kayenzi", "Kiringa", "Nyamabuye"],
+                    "Kinoni": ["Gafuka", "Mbizi", "Ntaruka", "Nyamugari"],
+                    "Kinyababa": ["Bugamba", "Kaganda", "Musasa", "Rutovu"],
+                    "Kivuye": ["Bukwashya", "Gashanje", "Murwa", "Nyirataba"],
+                    "Nemba": ["Kivumu", "Mucaca", "Nyamugari", "Rushara"],
+                    "Rugarama": ["Cyahi", "Gafumba", "Karambo", "Rugarama"],
+                    "Rugengabari": ["Kilibata", "Mucaca", "Nyanamo", "Rukandabyuma"],
+                    "Ruhunde": ["Gaseke", "Gitovu", "Ruhunde", "Rusekera"],
+                    "Rusarabuye": ["Kabona", "Ndago", "Ruhanga"],
+                    "Rwerere": ["Gashoro", "Gatsibo", "Kunini", "Ruconsho"]
+                },
+                "Gakenke": {
+                    "Gakenke": ["Buheta", "Kagoma", "Nganzo", "Rusagara"],
+                    "Busengo": ["Butereri", "Byibuhiro", "Kamina", "Kirabo", "Mwumba", "Ruhanga"],
+                    "Coko": ["Kiruku", "Mbirima", "Nyanza", "Nyundo"],
+                    "Cyabingo": ["Muhororo", "Muhaza", "Muramba", "Mutanda", "Rukore"],
+                    "Gashenyi": ["Nyacyina", "Nyakagezi", "Rukura", "Rutabo", "Rutenderi"],
+                    "Janja": ["Gakindo", "Gashyamba", "Karukungu", "Gatwa"],
+                    "Kamubuga": ["Kamubuga", "Kidomo", "Mbatabata", "Rukore"],
+                    "Karambo": ["Kanyanza", "Karambo", "Kirebe"],
+                    "Kivuruga": ["Cyintare", "Gasiza", "Gitinda", "Rutake", "Sereri"],
+                    "Mataba": ["Buyange", "Gikombe", "Nyundo"],
+                    "Minazi": ["Gasiho", "Munyana", "Murambi", "Raba"],
+                    "Mugunga": ["Gahinga", "Munyana", "Mutego", "Nkomane", "Rutabo", "Rwambeho"],
+                    "Muhondo": ["Bumba", "Busake", "Gasiza", "Gihinga", "Huro", "Musenyi", "Ruganda", "Rwankuba"],
+                    "Muyongwe": ["Bumba", "Gisiza", "Karyango", "Nganzo", "Va"],
+                    "Muzo": ["Kabatezi", "Kiryamo", "Mubuga", "Mwiyando", "Rwa"],
+                    "Nemba": ["Buranga", "Gahinga", "Gisozi", "Mucaca"],
+                    "Ruli": ["Busoro", "Gikingo", "Jango", "Ruli", "Rwesero"],
+                    "Rusasa": ["Gataba", "Kamonyi", "Murambi", "Nyundo", "Rurembo", "Rurambo"],
+                    "Rushashi": ["Burimba", "Busanane", "Joma", "Kageyo", "Mbogo", "Razi", "Shyombwe"]
+                },
+                "Rulindo": {
+                    "Base": ["Cyohoha", "Gitare", "Rwamahwa"],
+                    "Burega": ["Butangampundu", "Karengeri", "Taba"],
+                    "Bushoki": ["Gasiza", "Giko", "Kayenzi", "Mukoto", "Nyarurembo"],
+                    "Buyoga": ["Busoro", "Butare", "Gahororo", "Gitumba", "Karama", "Ndorwa", "Nyarusange"],
+                    "Cyinzuzi": ["Budakiranya", "Gifuba", "Migendezo", "Rudogo"],
+                    "Cyungo": ["Burehe", "Marembo", "Rwili"],
+                    "Kinihira": ["Butunzi", "Karegamazi", "Marembo", "Rebero"],
+                    "Kisaro": ["Gatsibo", "Kamushenyi", "Kigarama", "Mubuga", "Murama", "Sayi"],
+                    "Masoro": ["Kabuga", "Kigarama", "Kivugiza", "Nyamyumba", "Shengampuri"],
+                    "Mbogo": ["Bukoro", "Mushari", "Ngoma", "Rurenge"],
+                    "Murambi": ["Gatwa", "Mugambazi", "Muvumo", "Nyarusange"],
+                    "Ngoma": ["Karambo", "Kigoma", "Mugote", "Munyarwanda"],
+                    "Ntarabana": ["Kajebeshi", "Kiyanza", "Mahaza"],
+                    "Rukozo": ["Buraro", "Bweramvura", "Mberuka", "Mbuye"],
+                    "Rusiga": ["Gako", "Kirenge", "Taba"],
+                    "Shyorongi": ["Bugaragara", "Kijabagwe", "Muvumu", "Rubona", "Rutonde"],
+                    "Tumba": ["Barari", "Gahabwa", "Misezero", "Nyarurama", "Taba"]
+                }
+            },
+            "Intara y'Iburengerazuba": {
+                "Rubavu": {
+                    "Gisenyi": ["Amahoro", "Bugoyi", "Kivumu", "Mbugangari", "Nengo", "Rubavu", "Umuganda"],
+                    "Nyamyumba": ["Burushya", "Busoro", "Kinigi", "Kiraga", "Munanira", "Rubona"],
+                    "Bugeshi": ["Buringo", "Butaka", "Heza", "Kabumba", "Mutovu", "Nsherima", "Rusiza"],
+                    "Busasamana": ["Gacurabwenge", "Gasiza", "Gihonga", "Kageshi", "Makoro", "Nyacyonga", "Rusura"],
+                    "Cyanzarwe": ["Busigari", "Cyanzarwe", "Gora", "Kinyanzovu", "Makurizo", "Rukoko", "Ryabizige"],
+                    "Kanama": ["Kamuhoza", "Karambo", "Mahoko", "Musabike", "Nkomane", "Rusongati", "Yungwe"],
+                    "Kanzenze": ["Kanyirabigogo", "Kigarama", "Kirerema", "Murambi", "Nyamikirwa", "Nyarushyamba"],
+                    "Mudende": ["Bihungwe", "Kanyundo", "Micinyiro", "Mirindi", "Ndoranyi", "Rungu", "Rwaza"],
+                    "Nyakiriba": ["Bisizi", "Gikombe", "Kanyefurwe", "Nyabushongo", "Rukoko"],
+                    "Nyundo": ["Bahimba", "Gatovu", "Kavumu", "Kigarama", "Mukondo", "Nyundo", "Terimbere"],
+                    "Rubavu": ["Buhaza", "Byahi", "Gikombe", "Murambi", "Murara", "Rukoko"],
+                    "Rugerero": ["Basa", "Gisa", "Kabilizi", "Muhira", "Rushubi", "Rwaza", "Terimbere"]
+                },
+                "Rusizi": {
+                    "Kamembe": ["Cyangugu", "Gihundwe", "Kamashangi", "Kamurera", "Ruganda"],
+                    "Bugarama": ["Nyange", "Pera", "Ryankana"],
+                    "Butare": ["Butanda", "Gahungeri", "Nyamihanda", "Rwambogo"],
+                    "Bweyeye": ["Gikungu", "Kiyabo", "Murwa", "Nyamuzi", "Rasano"],
+                    "Gashonga": ["Buhokoro", "Kabakobwa", "Kacyuma", "Karemereye", "Muti", "Rusayo"],
+                    "Giheke": ["Cyendajuru", "Gakomeye", "Giheke", "Kamashangi", "Kigenge", "Ntura", "Rukombe", "Turambi"],
+                    "Gihundwe": ["Burunga", "Gatsiro", "Gihaya", "Kamatita", "Shagasha"],
+                    "Gitambi": ["Cyingwa", "Gahungeri", "Hangabashi", "Mashesha"],
+                    "Muganza": ["Cyarukara", "Gakoni", "Shara"],
+                    "Mururu": ["Gahinga", "Kabasigirira", "Karambi", "Kimpundu", "Miko", "Tara"],
+                    "Nkanka": ["Kamatita", "Kangazi", "Kinyaga", "Rugabano", "Ruhoko"],
+                    "Nkombo": ["Bigoga", "Bugarura", "Ishywa", "Kamagimbo", "Rwenje"],
+                    "Nkungu": ["Gatare", "Kiziguro", "Mataba", "Ryamuhuka"],
+                    "Nyakabuye": ["Gasebeya", "Gaseke", "Kamanu", "Kiziho", "Mashyuza", "Nyabintare"],
+                    "Nyakarenzo": ["Kabagina", "Kabaya", "Kanoga", "Karangiro", "Murambi", "Rusambu"],
+                    "Nzahaha": ["Butambamo", "Kigenge", "Murya", "Nyenji", "Rebero", "Rwinzuki"],
+                    "Rwimbogo": ["Karenge", "Muhehwe", "Mushaka", "Rubugu", "Ruganda"]
+                },
+                "Karongi": {
+                    "Bwishyura": ["Burunga", "Gasura", "Gitarama", "Kayenzi", "Kibuye", "Kiniha", "Nyarusange"],
+                    "Gishyita": ["Bumba", "Cyanya", "Kigarama", "Munanira", "Musasa", "Ngoma"],
+                    "Gishari": ["Birambo", "Mutuntu", "Mwendo", "Rugobagoba"],
+                    "Gitesi": ["Gasharu", "Gitega", "Kanunga", "Kayenzi", "Kirambo", "Munanira", "Ruhinga", "Rwariro"],
+                    "Mubuga": ["Kagabiro", "Murangara", "Nyagatovu", "Ryaruhanga"],
+                    "Murambi": ["Muhororo", "Mubuga", "Nkoto", "Nyarunyinya", "Shyembe"],
+                    "Murundi": ["Bukiro", "Kabaya", "Kareba", "Nyamushishi", "Nyarusazi"],
+                    "Mutuntu": ["Byogo", "Gakuta", "Kanyege", "Kinyonzwe", "Murengezo", "Rwankuba"],
+                    "Rubengera": ["Bubazi", "Gacaca", "Gisanze", "Gitwa", "Kibirizi", "Mataba", "Nyarugenge", "Ruragwe"],
+                    "Rugabano": ["Gisiza", "Gitovu", "Kabuga", "Mubuga", "Mucaca", "Rufungo", "Rwungo", "Tyazo"],
+                    "Ruganda": ["Biguhu", "Kinyovu", "Kivumu", "Nyabikeri", "Nyamugwagwa", "Rubazo"],
+                    "Rwankuba": ["Bigugu", "Bisesero", "Gasata", "Munini", "Nyakamira", "Nyarusanga", "Rubazo", "Rubumba"],
+                    "Twumba": ["Bihumbe", "Gakomeye", "Gisovu", "Gitabura", "Kavumu", "Murehe", "Rutabi"]
+                },
+                "Nyamasheke": {
+                    "Kagano": ["Gako", "Kagano", "Mubumbano", "Ninzi", "Rwesero", "Shara"],
+                    "Bushekeri": ["Buvungira", "Mpumbu", "Ngoma", "Nyarusange"],
+                    "Bushenge": ["Impala", "Kagunga", "Karusimbi", "Kigarama"],
+                    "Cyato": ["Bisanganwa", "Murambi", "Mutongo", "Rugari"],
+                    "Gihombo": ["Butare", "Gitwa", "Jarama", "Kibingo", "Mubuga"],
+                    "Kanjongo": ["Kibogora", "Kigabiro", "Raro", "Susa"],
+                    "Karambi": ["Gasovu", "Gitwe", "Kagarama", "Rushyarara"],
+                    "Karengera": ["Gasayo", "Gashashi", "Higiro", "Mwezi"],
+                    "Kirimbi": ["Cyimpindu", "Karengera", "Muhororo", "Nyarusange"],
+                    "Macuba": ["Gatare", "Mutongo", "Nyakabingo", "Rugari", "Vugangoma"],
+                    "Mahembe": ["Gisakura", "Kagarama", "Nyagatare", "Ruharambuga"],
+                    "Nyabitekeri": ["Kigabiro", "Kinunga", "Mariba", "Ntango"],
+                    "Rangiro": ["Banda", "Cyiha", "Gahinga", "Murambi"],
+                    "Ruharambuga": ["Kanazi", "Ntendezi", "Save", "Wimana"],
+                    "Shangi": ["Burere", "Mataba", "Mugera", "Nyamugari", "Shangi"]
+                },
+                "Rutsiro": {
+                    "Gihango": ["Bugina", "Congo-Nil", "Mataba", "Murambi", "Ruhingo", "Shyembe", "Tetero"],
+                    "Boneza": ["Bushaka", "Kabihogo", "Nkira", "Remera"],
+                    "Kigeyo": ["Buhindure", "Kigeyo", "Nkora", "Nyarugenge", "Rukaragata"],
+                    "Kivumu": ["Bunyoni", "Bunyunju", "Kabere", "Karambi", "Kigali", "Nyamirambo"],
+                    "Manihira": ["Haniro", "Muyira", "Tangabo"],
+                    "Mukura": ["Kagano", "Kageyo", "Karambo", "Mwendo"],
+                    "Murunda": ["Kirwa", "Mburamazi", "Rusebeya", "Twabugezi"],
+                    "Musasa": ["Gabiro", "Gisiza", "Nyarubuye", "Syiki"],
+                    "Mushonyi": ["Biruyi", "Kaguriro", "Magaba", "Rurara"],
+                    "Mushubati": ["Bumba", "Cyarusera", "Gitwa", "Mageragere", "Sure"],
+                    "Nyabirasi": ["Busuku", "Cyivugiza", "Mubuga", "Ngoma", "Terimbere"],
+                    "Ruhango": ["Gakeri", "Gatare", "Kavumu", "Nyakarera", "Rugasa"],
+                    "Rusebeya": ["Kabona", "Mberi", "Remera", "Ruronde"]
+                },
+                "Ngororero": {
+                    "Ngororero": ["Kabaya", "Kaseke", "Mugano", "Nyange", "Rususa", "Torero"],
+                    "Bwira": ["Bungwe", "Cyahafi", "Gashubi", "Kabarondo", "Ruhindage"],
+                    "Gatumba": ["Cyome", "Gatsibo", "Kamasiga", "Karambo", "Kirehe", "Ruhanga"],
+                    "Hindiro": ["Gatare", "Gatega", "Kajinge", "Marantima", "Rugendabari", "Runyinya"],
+                    "Kabaya": ["Busunzu", "Gaseke", "Kabaya", "Mwendo", "Ngoma", "Nyenyeri"],
+                    "Kageyo": ["Giheta", "Kageshi", "Kirwa", "Mukore", "Nyagahinika", "Rukaragata"],
+                    "Kavumu": ["Birembo", "Gitega", "Kageshi", "Mukungu", "Nyamugeyo", "Rugeshi", "Tetero"],
+                    "Matyazo": ["Binana", "Gitega", "Mushonyi", "Nyamugari", "Rutare"],
+                    "Muhanda": ["Bugarura", "Gasiza", "Mashya", "Ngoma", "Nganzo", "Rutagara"],
+                    "Muhororo": ["Bweramana", "Mubuga", "Myiha", "Nyamugeyo", "Rugogwe", "Rusororo"],
+                    "Ndaro": ["Bijyojyo", "Bitabage", "Kabageshi", "Kibanda", "Kinyovi"],
+                    "Nyange": ["Bambiro", "Gaseke", "Kamina", "Nsibo", "Vuganyana"],
+                    "Sovu": ["Birembo", "Kagano", "Kanyana", "Musenyi", "Nyabipfura", "Rutovu"]
+                },
+                "Nyabihu": {
+                    "Mukamira": ["Gasizi", "Jaba", "Kanyove", "Kazuba", "Rubaya", "Rugeshi", "Rukoma"],
+                    "Bigogwe": ["Arusha", "Basumba", "Kijote", "Kora", "Muhe", "Rega"],
+                    "Jenda": ["Bikingi", "Bukiranyi", "Gasizi", "Kareba", "Nyirakigugu", "Rega"],
+                    "Jomba": ["Gasiza", "Gisizi", "Guriro", "Kavumu", "Nyamitanzi", "Rurembo"],
+                    "Kabatwa": ["Gihorwe", "Myuga", "Ngando", "Rugarama"],
+                    "Karago": ["Busoro", "Cyamabuye", "Gihirwa", "Kadahenda", "Kareba", "Muremure"],
+                    "Kintobo": ["Gatovu", "Kintobo", "Nyagisozi", "Rukondo", "Ryinyo"],
+                    "Muringa": ["Gisizi", "Mulinga", "Mwiyanike", "Nkomane", "Nyamasheke", "Rwantobo"],
+                    "Rambura": ["Birembo", "Guriro", "Kibisabo", "Mutaho", "Nyundo", "Rugamba"],
+                    "Rugera": ["Gakoro", "Marangara", "Nyagahondo", "Nyamugari", "Rurembo", "Tyazo"],
+                    "Rurembo": ["Gahondo", "Gitega", "Kirimbogo", "Mwana", "Murambi", "Rugarama"],
+                    "Shyira": ["Cyimanzovu", "Gaharawe", "Kanyamitana", "Kintarure", "Mpinga", "Mutanda"]
+                }
+            },
+            "Intara y'Amajyepfo": {
+                "Huye": {
+                    "Ngoma": ["Butare", "Kaburemera", "Matyazo", "Ngoma"],
+                    "Tumba": ["Cyarwa", "Cyimana", "Gitwa", "Mpare", "Rango"],
+                    "Gishamvu": ["Nyakibanda", "Nyumba", "Ryakibogo", "Shori"],
+                    "Huye": ["Muyogoro", "Nyakagezi", "Rukira", "Sovu"],
+                    "Karama": ["Buhoro", "Bunazi", "Gahororo", "Kibingo", "Muhembe"],
+                    "Kigoma": ["Gahana", "Kabatwa", "Karambi", "Musebeya", "Nyabisindu", "Rugarama", "Shanga"],
+                    "Kinazi": ["Byinza", "Gahana", "Gitovu", "Kabona", "Sazange"],
+                    "Maraba": ["Buremera", "Gasumba", "Kabuye", "Kanyinya", "Shanga", "Shyanda"],
+                    "Mbazi": ["Gatobotobo", "Kabuga", "Mutunda", "Mwulire", "Rugango", "Rusagara", "Tare"],
+                    "Mukura": ["Bukomeye", "Buvumu", "Icyeru", "Rango A", "Rango B"],
+                    "Ruhashya": ["Busheshi", "Gatovu", "Karama", "Mara", "Muhororo", "Ruhashya", "Rugogwe"],
+                    "Rusatira": ["Buhimba", "Gafumba", "Kimirehe", "Kimuna", "Kiruhura", "Mugogwe"],
+                    "Rwaniro": ["Gatwaro", "Kamwambi", "Kibiraro", "Mwendo", "Nyamabuye", "Nyaruhombo", "Shyunga"],
+                    "Simbi": ["Cyendajuru", "Gisakura", "Kabusanza", "Mugobore", "Nyangazi"]
+                },
+                "Muhanga": {
+                    "Nyamabuye": ["Gahogo", "Gifumba", "Gitarama", "Remera"],
+                    "Cyeza": ["Biringaga", "Kigarama", "Kivumu", "Makera", "Nyarunyinya", "Shori"],
+                    "Kabacuzi": ["Buramba", "Butare", "Kabitare", "Kavumu", "Kibyimba", "Ngoma", "Sholi"],
+                    "Kibangu": ["Gisharu", "Jurwe", "Kibangu", "Mubuga", "Rubyiniro", "Ryakanimba"],
+                    "Kiyumba": ["Budaha", "Gahabwa", "Gisiza", "Remera", "Ruhina", "Rukeri"],
+                    "Muhanga": ["Kanyinya", "Nganzo", "Nyamirama", "Remera", "Tyazo"],
+                    "Mushishiro": ["Matyazo", "Munazi", "Rukaragata", "Rwasare", "Sabunegeri"],
+                    "Nyabinoni": ["Gashorera", "Masangano", "Mbuga", "Muvumba", "Nyarusange"],
+                    "Nyarusange": ["Mbiriri", "Musongati", "Ngaru", "Rusovu"],
+                    "Rongi": ["Gasagara", "Gasharu", "Karambo", "Nyamirambo", "Ruhango"],
+                    "Rugendabari": ["Gasave", "Kanyana", "Kibumba", "Mpinga", "Nsanga"],
+                    "Shyogwe": ["Kinini", "Mbare", "Mubuga", "Ruli"]
+                },
+                "Nyanza": {
+                    "Busasamana": ["Gahondo", "Kavumu", "Kibinja", "Nyanza", "Rwesero"],
+                    "Busoro": ["Gitovu", "Kimirama", "Masangano", "Munyinya", "Rukingiro", "Shyira"],
+                    "Cyabakamyi": ["Kadaho", "Karama", "Nyabinyenga", "Nyarurama", "Rubona"],
+                    "Kibirizi": ["Bugali", "Cyeru", "Mbuye", "Mututu"],
+                    "Kigoma": ["Butansinda", "Butara", "Gahombo", "Gasoro", "Mulinja"],
+                    "Mukingo": ["Cyerezo", "Gatagara", "Kiruri", "Mpanga", "Nkomero", "Ngwa"],
+                    "Muyira": ["Gati", "Migina", "Nyamiyaga", "Nyamure", "Raranzige"],
+                    "Ntyazo": ["Bugali", "Cyotamakara", "Kagunga", "Katarara"],
+                    "Nyagisozi": ["Gahunga", "Kabirizi", "Kirambi", "Mweya", "Rurangazi"],
+                    "Rwabicuma": ["Gacu", "Gishike", "Mubuga", "Mushirarungu", "Nyarusange", "Runga"]
+                },
+                "Gisagara": {
+                    "Ndora": ["Bweya", "Cyamukuza", "Dahwe", "Gisagara", "Mukande"],
+                    "Gikonko": ["Cyiri", "Gasagara", "Gikonko", "Mbogo"],
+                    "Gishubi": ["Gabiro", "Nyabitare", "Nyakibungo", "Nyamugari"],
+                    "Kansi": ["Akaboti", "Bumpeke", "Sabaderi", "Umunini"],
+                    "Kibilizi": ["Duwani", "Kibilizi", "Muyira", "Ruturo"],
+                    "Kigembe": ["Agahabwa", "Gatovu", "Impinga", "Nyabikenke", "Rubona", "Rusagara"],
+                    "Mamba": ["Gakoma", "Kabumbwe", "Mamba", "Muyaga", "Ramba"],
+                    "Muganza": ["Cyumba", "Muganza", "Remera", "Rwamiko", "Saga"],
+                    "Mugombwa": ["Baziro", "Kibayi", "Kibu", "Mugombwa", "Mukomacara"],
+                    "Mukindo": ["Gitega", "Mukiza", "Nyabisagara", "Runyinya"],
+                    "Musha": ["Bukinanyana", "Gatovu", "Kigarama", "Kimana"],
+                    "Nyanza": ["Higiro", "Nyaruteja", "Nyamugari", "Umubanga"],
+                    "Save": ["Gatoki", "Munazi", "Rwanza", "Shyanda", "Zihare"]
+                },
+                "Nyaruguru": {
+                    "Kibeho": ["Gakoma", "Kibeho", "Mbasa", "Mpanda", "Mubuga", "Nyange"],
+                    "Busanze": ["Kirarangombe", "Nteko", "Nkanda", "Runyombyi", "Shyeru"],
+                    "Cyahinda": ["Cyahinda", "Gasasa", "Muhambara", "Rutobwe"],
+                    "Kivu": ["Cyanyirankora", "Gahurizo", "Kimina", "Kivu", "Rugerero"],
+                    "Mata": ["Gorwe", "Mataba", "Murambi", "Nyamabuye", "Ramba"],
+                    "Muganza": ["Muganza", "Rukore", "Samiyonga", "Uwacyiza"],
+                    "Munini": ["Giheta", "Ngarurira", "Ntwali", "Nyamirama", "Sereri"],
+                    "Ngera": ["Bitare", "Mukuge", "Murama", "Nyanza", "Yaramba"],
+                    "Ngoma": ["Fugi", "Kibangu", "Kiyonza", "Mbuye", "Nyamirama", "Rubona"],
+                    "Nyabimata": ["Giheta", "Kabere", "Mishungero", "Nyabimata", "Ruhinga"],
+                    "Nyagisozi": ["Maraba", "Mwoya", "Nkakwa", "Nyagisozi"],
+                    "Ruheru": ["Gitita", "Kabere", "Remera", "Ruyenzi", "Uwumusebeya"],
+                    "Ruramba": ["Giseke", "Gabiro", "Nyarugano", "Rugogwe"],
+                    "Rusenge": ["Bunge", "Cyuna", "Gikunzi", "Mariba", "Raranzige"]
+                },
+                "Nyamagabe": {
+                    "Gasaka": ["Kigeme", "Nyamugari", "Nyarusiza", "Ngiryi", "Remera"],
+                    "Buruhukiro": ["Bushigishigi", "Byimana", "Gifurwe", "Kizimyamuriro", "Munini", "Rambya"],
+                    "Cyanika": ["Gitega", "Karama", "Kiyumba", "Ngoma", "Nyanza", "Nyanzoga"],
+                    "Gatare": ["Bakopfu", "Gatare", "Mukongoro", "Ruganda", "Shyeru"],
+                    "Kaduha": ["Kavumu", "Murambi", "Musenyi", "Nyabisindu", "Nyamiyaga"],
+                    "Kamegeri": ["Bwanza", "Kamegeri", "Kirehe", "Nyarusiza", "Rususa"],
+                    "Kibirizi": ["Bugarama", "Bugarura", "Gashiha", "Uwingugu"],
+                    "Kibumbwe": ["Bwakira", "Gakanka", "Kibumbwe", "Nyagasambu"],
+                    "Kitabi": ["Kagano", "Miko", "Mujuga", "Shaba", "Uwingugu"],
+                    "Mbazi": ["Manwari", "Mutiwingoma", "Ngara", "Ngoma"],
+                    "Mugano": ["Gitondorero", "Gitwa", "Ruhinga", "Sovu", "Suti", "Yonde"],
+                    "Musange": ["Gasave", "Jenda", "Masagara", "Masangano", "Masizi", "Nyagisenyi"],
+                    "Musebeya": ["Gatovu", "Nyarurambi", "Rugano", "Runege", "Rusekera", "Sekera"],
+                    "Mushubi": ["Buteteri", "Cyobe", "Gashwati"],
+                    "Nkomane": ["Bitandara", "Musaraba", "Mutengeri", "Nkomane", "Nyarwungo", "Twarubona"],
+                    "Tare": ["Buhoro", "Gasarenda", "Gatovu", "Kaganza", "Nkumbure", "Nyamigina"],
+                    "Uwinkingi": ["Gahira", "Kibyagira", "Mudasomwa", "Munyege", "Rugogwe"]
+                },
+                "Ruhango": {
+                    "Ruhango": ["Buhoro", "Bunyogombe", "Gikoma", "Munini", "Musamo", "Nyagisozi", "Rwoga", "Tambwe"],
+                    "Bweramana": ["Buhanda", "Gitisi", "Murama", "Rubona", "Rwinyana"],
+                    "Byimana": ["Kamujisho", "Kirengeri", "Mahembe", "Mpanda", "Muhororo", "Ntenyo", "Nyakabuye"],
+                    "Kabagali": ["Bihembe", "Karambi", "Munanira", "Remera", "Rwesero", "Rwimvubu"],
+                    "Kinazi": ["Burima", "Gisali", "Kinazi", "Nyarugenge", "Rutabo"],
+                    "Kinihira": ["Bweramvura", "Gitinda", "Kirwa", "Muyunzwe", "Nyakogo", "Rukina"],
+                    "Mbuye": ["Cyanza", "Gisanga", "Kabuga", "Kizibere", "Mbuye", "Mwendo", "Nyakarekare"],
+                    "Mwendo": ["Gafunzo", "Gisanga", "Kamujisho", "Kigarama", "Kubutare", "Mutara", "Nyabibugu", "Saruheshyi"],
+                    "Ntongwe": ["Gako", "Gisanga", "Kareba", "Kayenzi", "Kebero", "Nyagafumberi", "Nyarurama"]
+                },
+                "Kamonyi": {
+                    "Runda": ["Gihara", "Kabagesera", "Kagasa", "Muganza", "Nyarubaka", "Ruyenzi"],
+                    "Gacurabwenge": ["Gihinga", "Gihira", "Kigembe", "Nkingo"],
+                    "Karama": ["Bitare", "Bunyonga", "Muganza", "Nyamirembe"],
+                    "Kayenzi": ["Bugarama", "Cubi", "Kayonza", "Kirwa", "Mataba", "Nyamirama"],
+                    "Kayumbu": ["Busoro", "Gaseke", "Giko", "Muyange"],
+                    "Mugina": ["Jenda", "Kabugondo", "Mbati", "Mugina", "Nteko"],
+                    "Musambira": ["Buhoro", "Cyambwe", "Karengera", "Kivumu", "Mpushi", "Rukambura"],
+                    "Ngamba": ["Kazirabageni", "Marembo", "Mbirima"],
+                    "Nyamiyaga": ["Bibungo", "Kabashumba", "Kidahwe", "Mukinga", "Ngoma"],
+                    "Nyarubaka": ["Gitare", "Kambyeyi", "Kigusa", "Nyagishubi", "Ruyanza"],
+                    "Rugarika": ["Bihembe", "Kigese", "Masaka", "Nyabubare", "Sheli"],
+                    "Rukoma": ["Bugoba", "Buguri", "Gishyeshye", "Murehe", "Mwirute", "Remera", "Taba"]
+                }
+            }
+        };
+
+        const specificVillages = {
+            "Kabeza": ["Akabeza", "Amahoro", "Gasabo", "Juru", "Nyandungu", "Rebero"],
+            "Busanza": ["Antene", "Bamporeki", "Gashyushya", "Kariyeri", "Radari"],
+            "Rukiri I": ["Amahoro", "Gisimenti", "Urumuri", "Rebero"],
+            "Rukiri II": ["Amajyambere", "Kigali", "Ruturusu I", "Ruturusu II"],
+            "Nyabisindu": ["Amarembo I", "Amarembo II", "Gihogere", "Nyabisindu"],
+            "Nyarutarama": ["Gishushu", "Juru", "Kamahwa", "Kangondo I", "Kangondo II"],
+            "Kibagabaga": ["Buranga", "Gasharu", "Kageyo", "Karisimbi", "Ramiro"],
+            "Bibare": ["Abatuje", "Amariza", "Imanzi", "Inganji"],
+            "Nyagatovu": ["Ibukinanyana", "Ibuhoro", "Isangano", "Urugwiro"],
+            "Nyamata Ville": ["Gasabo I", "Gasabo II", "Nyamata I", "Nyamata II", "Rugarama"],
+            "Kayumba": ["Gakamba", "Kayumba", "Nyabivumu", "Rukora"],
+            "Maranyundo": ["Gahembe", "Maranyundo", "Rusagara"],
+            "Kanazi": ["Bihari", "Cyeru", "Kanazi", "Rugando"],
+            "Nengo": ["Amahoro", "Gikuyu", "Nengo", "Ubumwe"],
+            "Ruhengeri": ["Kigombe", "Mpenge", "Ruhengeri", "Susuruka"],
+            "Butare": ["Buye", "Kaburemera", "Mamba", "Matyazo"],
+            "Ruyenzi": ["Gihara", "Kabagesera", "Nyarubaka", "Ruyenzi"]
+        };
+
+        function getVillagesForCell(cellName) {
+            if (specificVillages[cellName]) return specificVillages[cellName];
+            return [`${cellName} I`, `${cellName} II`, "Amahoro", "Iterambere", "Ubumwe", "Rugarama"];
+        }
+
+        // =========================================================================
+        // 2. AMAZU Y'IBANZE (STATUS: 'approved')
+        // =========================================================================
+        const defaultProperties = [
+            {
+                id: 1, title: "Inzu Nziza y'Ibyumba 4 i Kabeza", type: "Gukodesha", price: 350000,
+                province: "Umujyi wa Kigali", district: "Kicukiro", sector: "Kanombe", cell: "Kabeza", village: "Akabeza",
+                beds: 4, baths: 3, phone: "250788123456",
+                image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80", status: "approved"
+            },
+            {
+                id: 2, title: "Inzu Igezweho Igurishwa i Nyamata Ville", type: "Kugura", price: 45000000,
+                province: "Intara y'Iburasirazuba", district: "Bugesera", sector: "Nyamata", cell: "Nyamata Ville", village: "Nyamata I",
+                beds: 4, baths: 3, phone: "250788234567",
+                image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80", status: "approved"
+            },
+            {
+                id: 3, title: "Appartement Nziza i Kibagabaga", type: "Gukodesha", price: 550000,
+                province: "Umujyi wa Kigali", district: "Gasabo", sector: "Kimironko", cell: "Kibagabaga", village: "Karisimbi",
+                beds: 3, baths: 2, phone: "250788345678",
+                image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80", status: "approved"
+            }
+        ];
+
+        let properties = JSON.parse(localStorage.getItem("isange_properties_v3")) || defaultProperties;
+
+        window.onload = function() {
+            const searchProv = document.getElementById("provinceSelect");
+            const modalProv = document.getElementById("modalProvince");
+
+            for (let prov in rwandaAdminData) {
+                searchProv.innerHTML += `<option value="${prov}">${prov}</option>`;
+                modalProv.innerHTML += `<option value="${prov}">${prov}</option>`;
+            }
+            displayApprovedProperties();
+        };
+
+        function getIds(mode) {
+            return mode === 'search' ? { prov: "provinceSelect", dist: "districtSelect", sect: "sectorSelect", cell: "cellSelect", vill: "villageSelect" } 
+                                     : { prov: "modalProvince", dist: "modalDistrict", sect: "modalSector", cell: "modalCell", vill: "modalVillage" };
+        }
+
+        function handleProvinceChange(mode) {
+            const ids = getIds(mode);
+            const prov = document.getElementById(ids.prov).value;
+            const distEl = document.getElementById(ids.dist);
+            const sectEl = document.getElementById(ids.sect);
+            const cellEl = document.getElementById(ids.cell);
+            const villEl = document.getElementById(ids.vill);
+
+            distEl.innerHTML = '<option value="">-- Hitamo Akarere --</option>';
+            sectEl.innerHTML = '<option value="">-- Hitamo Umurenge --</option>';
+            cellEl.innerHTML = '<option value="">-- Hitamo Akagari --</option>';
+            villEl.innerHTML = '<option value="">-- Hitamo Umudugudu --</option>';
+
+            sectEl.disabled = true; cellEl.disabled = true; villEl.disabled = true;
+
+            if (prov && rwandaAdminData[prov]) {
+                distEl.disabled = false;
+                for (let dist in rwandaAdminData[prov]) distEl.innerHTML += `<option value="${dist}">${dist}</option>`;
+            } else { distEl.disabled = true; }
+        }
+
+        function handleDistrictChange(mode) {
+            const ids = getIds(mode);
+            const prov = document.getElementById(ids.prov).value;
+            const dist = document.getElementById(ids.dist).value;
+            const sectEl = document.getElementById(ids.sect);
+            const cellEl = document.getElementById(ids.cell);
+            const villEl = document.getElementById(ids.vill);
+
+            sectEl.innerHTML = '<option value="">-- Hitamo Umurenge --</option>';
+            cellEl.innerHTML = '<option value="">-- Hitamo Akagari --</option>';
+            villEl.innerHTML = '<option value="">-- Hitamo Umudugudu --</option>';
+
+            cellEl.disabled = true; villEl.disabled = true;
+
+            if (prov && dist && rwandaAdminData[prov][dist]) {
+                sectEl.disabled = false;
+                for (let sect in rwandaAdminData[prov][dist]) sectEl.innerHTML += `<option value="${sect}">${sect}</option>`;
+            } else { sectEl.disabled = true; }
+        }
+
+        function handleSectorChange(mode) {
+            const ids = getIds(mode);
+            const prov = document.getElementById(ids.prov).value;
+            const dist = document.getElementById(ids.dist).value;
+            const sect = document.getElementById(ids.sect).value;
+            const cellEl = document.getElementById(ids.cell);
+            const villEl = document.getElementById(ids.vill);
+
+            cellEl.innerHTML = '<option value="">-- Hitamo Akagari --</option>';
+            villEl.innerHTML = '<option value="">-- Hitamo Umudugudu --</option>';
+            villEl.disabled = true;
+
+            if (prov && dist && sect && rwandaAdminData[prov][dist][sect]) {
+                cellEl.disabled = false;
+                rwandaAdminData[prov][dist][sect].forEach(cell => cellEl.innerHTML += `<option value="${cell}">${cell}</option>`);
+            } else { cellEl.disabled = true; }
+        }
+
+        function handleCellChange(mode) {
+            const ids = getIds(mode);
+            const cell = document.getElementById(ids.cell).value;
+            const villEl = document.getElementById(ids.vill);
+
+            villEl.innerHTML = '<option value="">-- Hitamo Umudugudu --</option>';
+            if (cell) {
+                villEl.disabled = false;
+                getVillagesForCell(cell).forEach(vill => villEl.innerHTML += `<option value="${vill}">${vill}</option>`);
+            } else { villEl.disabled = true; }
+        }
+
+        // =========================================================================
+        // 3. KWEREKANA AMAZU KU RUBAGA (YEMEJWE GUSA)
+        // =========================================================================
+        function displayApprovedProperties(customList = null) {
+            const grid = document.getElementById("propertiesGrid");
+            const title = document.getElementById("resultsTitle");
+            grid.innerHTML = "";
+
+            const listToUse = customList || properties.filter(p => p.status === 'approved');
+            title.innerText = `Amazu Aboneka Kuri Isange (${listToUse.length})`;
+
+            if (listToUse.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align:center; padding:3rem; background:white; border-radius:10px;">
+                        <h3 style="color:#0f766e; margin-bottom:8px;">Nta nzu yemewe ibonetse kuri uyu mwanya!</h3>
+                        <p style="color:#64748b;">Gerageza guhindura aho ushakisha cyangwa wongereho indi nzu.</p>
+                    </div>`;
+                return;
+            }
+
+            listToUse.forEach(item => {
+                const formattedPrice = Number(item.price).toLocaleString() + " RWF" + (item.type === "Gukodesha" ? " / ukwezi" : "");
+                const badgeClass = item.type === "Gukodesha" ? "badge-rent" : "badge-buy";
+
+                grid.innerHTML += `
+                    <div class="card">
+                        <div class="card-img-wrap">
+                            <span class="badge ${badgeClass}">${item.type}</span>
+                            <img src="${item.image}" alt="${item.title}">
+                        </div>
+                        <div class="card-body">
+                            <div class="price">${formattedPrice}</div>
+                            <div class="card-title">${item.title}</div>
+                            <div class="location-tag">
+                                📍 <strong>${item.province}</strong> &rsaquo; ${item.district} &rsaquo; ${item.sector} &rsaquo; ${item.cell} &rsaquo; <strong>${item.village || ''}</strong>
+                            </div>
+                            <div class="features">
+                                <span>🛏️ Ibyumba: <strong>${item.beds}</strong></span>
+                                <span>🚿 Ubwogero: <strong>${item.baths}</strong></span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="https://wa.me/${item.phone}?text=Muraho! Nabonye inzu yanyu kuri Isange.rw: ${encodeURIComponent(item.title)}" target="_blank" class="btn-contact btn-whatsapp">WhatsApp</a>
+                                <a href="tel:+${item.phone}" class="btn-contact btn-call">Hamagara</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filterProperties() {
+            const type = document.getElementById("filterType").value;
+            const prov = document.getElementById("provinceSelect").value;
+            const dist = document.getElementById("districtSelect").value;
+            const sect = document.getElementById("sectorSelect").value;
+            const cell = document.getElementById("cellSelect").value;
+            const vill = document.getElementById("villageSelect").value;
+
+            const filtered = properties.filter(p => {
+                return p.status === 'approved' &&
+                       (type === "all" || p.type === type) &&
+                       (prov === "" || p.province === prov) &&
+                       (dist === "" || p.district === dist) &&
+                       (sect === "" || p.sector === sect) &&
+                       (cell === "" || p.cell === cell) &&
+                       (vill === "" || p.village === vill);
+            });
+
+            displayApprovedProperties(filtered);
+        }
+
+        function resetFilters() {
+            document.getElementById("filterType").value = "all";
+            document.getElementById("provinceSelect").value = "";
+            handleProvinceChange('search');
+            displayApprovedProperties();
+        }
+
+        // =========================================================================
+        // 4. KONGERAMO INZU NSHYA (STATUS: 'pending')
+        // =========================================================================
+        function openModal() { document.getElementById("postModal").style.display = "flex"; }
+        function closeModal() { document.getElementById("postModal").style.display = "none"; }
+
+        function addNewProperty(e) {
+            e.preventDefault();
+            let rawPhone = document.getElementById("newPhone").value.trim();
+            if (rawPhone.startsWith("0")) rawPhone = "25" + rawPhone;
+
+            const fileInput = document.getElementById("newImageFile");
+            const defaultImg = "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&q=80";
+
+            const saveProperty = (imgUrl) => {
+                const newProp = {
+                    id: Date.now(),
+                    title: document.getElementById("newTitle").value,
+                    type: document.getElementById("newType").value,
+                    price: document.getElementById("newPrice").value,
+                    province: document.getElementById("modalProvince").value,
+                    district: document.getElementById("modalDistrict").value,
+                    sector: document.getElementById("modalSector").value,
+                    cell: document.getElementById("modalCell").value,
+                    village: document.getElementById("modalVillage").value,
+                    beds: document.getElementById("newBeds").value,
+                    baths: document.getElementById("newBaths").value,
+                    phone: rawPhone,
+                    image: imgUrl,
+                    status: "pending" // Itegereje ko uyemeza
+                };
+
+                properties.unshift(newProp);
+                localStorage.setItem("isange_properties_v3", JSON.stringify(properties));
+                closeModal();
+                document.getElementById("addPropertyForm").reset();
+                alert("Inzu yawe yoherejwe neza! Itegereje kwemezwa na Admin (Mucyo) kugira ngo igaragare ku rubuga.");
+            };
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(event) { saveProperty(event.target.result); };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                saveProperty(defaultImg);
+            }
+        }
+
+        // =========================================================================
+        // 5. ADMIN PANEL & APPROVE LOGIC
+        // =========================================================================
+        function openAdminPanel() {
+            let password = prompt("Injiza ijambo ry'ibanga rya Admin (Password):");
+            if (password === "isange2026") { // Hindura hano ijambo ry'ibanga wifuza
+                document.getElementById("adminModal").style.display = "flex";
+                renderAdminList();
+            } else if (password !== null) {
+                alert("Ijambo ry'ibanga si ryo!");
+            }
+        }
+
+        function closeAdminPanel() {
+            document.getElementById("adminModal").style.display = "none";
+            displayApprovedProperties(); // Kureba ko byahise bihinduka kuri live
+        }
+
+        function renderAdminList() {
+            const adminContent = document.getElementById("adminContent");
+            const pendingList = properties.filter(p => p.status === 'pending');
+
+            if (pendingList.length === 0) {
+                adminContent.innerHTML = `<p style="text-align:center; padding:2rem; color:#64748b;">Nta nzu nshya itegereje kwemezwa ihari kuri ubu.</p>`;
+                return;
+            }
+
+            let html = `<div style="display:flex; flex-direction:column; gap:15px; max-height:60vh; overflow-y:auto;">`;
+            pendingList.forEach(item => {
+                html += `
+                    <div style="display:flex; justify-content:space-between; align-items:center; background:#f8fafc; padding:12px; border-radius:8px; border:1px solid #e2e8f0; gap:15px;">
+                        <img src="${item.image}" style="width:70px; height:50px; object-fit:cover; border-radius:4px;">
+                        <div style="flex-grow:1;">
+                            <strong>${item.title}</strong><br>
+                            <small style="color:#64748b;">📍 ${item.district} / ${item.sector} | 💰 ${Number(item.price).toLocaleString()} RWF</small>
+                        </div>
+                        <div style="display:flex; gap:8px;">
+                            <button onclick="approveProperty(${item.id})" style="background:#25D366; color:white; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-weight:600;">Emeza (Approve)</button>
+                            <button onclick="deleteProperty(${item.id})" style="background:#dc2626; color:white; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-weight:600;">Siba</button>
+                        </div>
+                    </div>
+                `;
+            });
+            html += `</div>`;
+            adminContent.innerHTML = html;
+        }
+
+        function approveProperty(id) {
+            properties = properties.map(p => {
+                if (p.id === id) p.status = 'approved';
+                return p;
+            });
+            localStorage.setItem("isange_properties_v3", JSON.stringify(properties));
+            renderAdminList();
+            alert("Inzu yemejwe neza! Yamaze kujya ku rubuga rusange.");
+        }
+
+        function deleteProperty(id) {
+            if (confirm("Uzi neza ko ushaka gusiba iyi nzu?")) {
+                properties = properties.filter(p => p.id !== id);
+                localStorage.setItem("isange_properties_v3", JSON.stringify(properties));
+                renderAdminList();
+            }
+        }
+    </script>
+</body>
+</html>
