@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISANGE.rw | Gura & Kodesha Inzu mu Rwanda Hose</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Segoe UI', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            DEFAULT: '#0f766e',
+                            dark: '#115e59',
+                            light: '#ccfbf1',
+                        },
+                        secondary: {
+                            DEFAULT: '#f59e0b',
+                            dark: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar & smooth transitions */
+        html {
+            scroll-behavior: smooth;
+        }
+        .hero-bg {
+            background: linear-gradient(rgba(15, 118, 110, 0.88), rgba(17, 94, 89, 0.94)),
+                        url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+        }
+        select:disabled {
+            background-color: #f8fafc;
+            color: #94a3b8;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body class="bg-[#f1f5f9] text-[#0f172a] font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- STICKY NAVBAR -->
+    <header class="bg-white shadow-sm sticky top-0 z-40 border-b border-slate-200/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-3.5 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" onclick="resetFilters()" class="flex items-center gap-2 text-2xl font-extrabold text-primary tracking-tight">
+                <span class="bg-primary/10 p-2 rounded-xl text-xl">🏠</span>
+                <span>ISANGE<span class="text-secondary">.rw</span></span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-700">
+                <a href="#amazu" onclick="quickFilterType('all')" class="hover:text-primary transition">Amazu Yose</a>
+                <a href="#amazu" onclick="quickFilterType('Gukodesha')" class="hover:text-primary transition">Gukodesha</a>
+                <a href="#amazu" onclick="quickFilterType('Kugura')" class="hover:text-primary transition">Kugura</a>
+            </nav>
+
+            <!-- Action Button -->
+            <div class="flex items-center gap-3">
+                <button onclick="openPostModal()" class="bg-primary hover:bg-primary-dark text-white font-semibold text-sm px-4 py-2.5 sm:px-5 sm:py-2.5 rounded-xl shadow-sm transition flex items-center gap-1.5 cursor-pointer">
+                    <span class="text-base leading-none">+</span>
+                    <span>Shyiraho Inzu</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Quick Links Bar -->
+        <div class="md:hidden border-t border-slate-100 bg-slate-50 px-4 py-2 flex justify-around text-xs font-semibold text-slate-600">
+            <a href="#amazu" onclick="quickFilterType('all')" class="py-1 hover:text-primary">Amazu Yose</a>
+            <a href="#amazu" onclick="quickFilterType('Gukodesha')" class="py-1 hover:text-primary">Gukodesha</a>
+            <a href="#amazu" onclick="quickFilterType('Kugura')" class="py-1 hover:text-primary">Kugura</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-bg text-white pt-14 pb-24 sm:pt-20 sm:pb-28 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="inline-block bg-white/15 backdrop-blur-sm border border-white/25 text-amber-200 text-xs sm:text-sm font-semibold px-3.5 py-1 rounded-full mb-4">
+                🇷🇼 Urubuga rwizewe rw'Amazu mu Rwanda Hose
+            </span>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+                Isange mu Nzu yawe mu Rwanda Hose
+            </h1>
+            <p class="text-base sm:text-lg text-slate-100 max-w-2xl mx-auto leading-relaxed">
+                Kodesha cyangwa ugure inzu mu buryo bworoshye kandi bwizewe. Hitamo Intara, Akarere, Umurenge, Akagari n'Umudugudu wifuza guturamo.
+            </p>
+        </div>
+    </section>
+
+    <!-- 5-LEVEL CASCADING SEARCH CARD -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 sm:-mt-20 relative z-20 w-full">
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-200/80 p-5 sm:p-7">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-100">
+                <h2 class="text-sm sm:text-base font-bold text-primary flex items-center gap-2">
+                    <span>📍</span>
+                    <span>Shakisha ukurikije Intara, Akarere, Umurenge, Akagari n'Umudugudu:</span>
+                </h2>
+                <button onclick="resetFilters()" class="text-xs font-semibold text-slate-500 hover:text-primary underline self-start sm:self-auto cursor-pointer">
+                    Siba amahitamo yose
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3.5">
+                <!-- Igikorwa -->
+                <div class="flex flex-col">
+                    <label for="filterType" class="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Igikorwa</label>
+                    <select id="filterType" class="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20">
+                        <option value="all">Byose (Gukodesha & Kugura)</option>
+                        <option value="Gukodesha">Gukodesha (Rent)</option>
+                        <option value="Kugura">Kugura (Buy)</option>
+                    </select>
+                </div>
+
+                <!-- 1. Intara -->
+                <div class="flex flex-col">
+                    <label for="provinceSelect" class="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">1. Intara / Umujyi</label>
+                    <select id="provinceSelect" onchange="handleProvinceChange('search')" class="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20">
+                        <option value="">-- Hitamo Intara --</option>
+                    </select>
+                </div>
+
+                <!-- 2. Akarere -->
+                <div class="flex flex-col">
+                    <label for="districtSelect" class="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">2. Akarere</label>
+                    <select id="districtSelect" onchange="handleDistrictChange('search')" disabled class="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20">
+                        <option value="">-- Hitamo Akarere --</option>
+                    </select>
+                </div>
+
+                <!-- 3. Umurenge -->
+                <div class="flex flex-col">
+                    <label for="sectorSelect" class="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">3. Umurenge</label>
+                    <select id="sectorSelect" onchange="handleSectorChange('search')" disabled class="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20">
+                        <option value="">-- Hitamo Umurenge --</option>
+                    </select>
+                </div>
+
+                <!-- 4. Akagari -->
+                <div class="flex flex-col">
+                    <label for="cellSelect" class="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">4. Akagari</label>
+                    <select id="cellSelect" onchange="handleCellChange('search')" disabled class="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20">
+                        <option value="">-- Hitamo Akagari --</option>
+                    </select>
+                </div>
+
+                <!-- 5. Umudugudu -->
+                <div class="flex flex-col">
+                    <label for="villageSelect" class="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">5. Umudugudu</label>
+                    <select id="villageSelect" disabled class="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20">
+                        <option value="">-- Hitamo Umudugudu --</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Search Action Row -->
+            <div class="mt-4 pt-3 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="w-full sm:w-auto flex-1 max-w-md">
+                    <input type="text" id="keywordSearch" placeholder="Andika ijambo ry'ingenzi (urugero: Nyamata, ihenze, 3 ibyumba...)" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20">
+                </div>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button onclick="filterProperties()" class="w-full sm:w-auto bg-secondary hover:bg-secondary-dark text-[#0f172a] font-bold text-sm px-7 py-2.5 rounded-xl shadow-sm transition flex items-center justify-center gap-2 cursor-pointer">
+                        <span>🔍</span>
+                        <span>Shakisha Inzu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN LISTINGS SECTION -->
+    <main id="amazu" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full">
+        <!-- Section Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-7">
+            <div>
+                <h2 id="resultsTitle" class="text-2xl font-extrabold text-slate-900">Amazu Aboneka Kuri Isange</h2>
+                <p id="resultsSubtitle" class="text-sm text-slate-500 mt-0.5">Hitamo inzu ikunogeye uvugane na nyirayo ako kanya.</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <span id="countBadge" class="bg-primary/10 text-primary font-bold text-xs px-3 py-1.5 rounded-full">
+                    Amazu 6
+                </span>
+                <button onclick="resetFilters()" class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl transition cursor-pointer">
+                    Erekana amazu yose
+                </button>
+            </div>
+        </div>
+
+        <!-- Properties Grid -->
+        <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Cards injected via JavaScript -->
+        </div>
+    </main>
+
+    <!-- MODAL: PROPERTY DETAILS (REBA BIRAMBUYE) -->
+    <div id="detailsModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-xs z-50 hidden items-center justify-center p-4" onclick="closeDetailsOnBackdrop(event)">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-slate-200">
+            <div class="relative h-64 sm:h-72 bg-slate-200">
+                <img id="detailImg" src="" alt="Ifoto y'inzu" class="w-full h-full object-cover">
+                <button onclick="closeDetailsModal()" class="absolute top-3 right-3 bg-white/90 hover:bg-white text-slate-800 w-9 h-9 rounded-full flex items-center justify-center font-bold text-lg shadow-md cursor-pointer">
+                    &times;
+                </button>
+                <span id="detailBadge" class="absolute top-3 left-3 px-3.5 py-1 rounded-full text-xs font-bold text-white shadow"></span>
+            </div>
+
+            <div class="p-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                    <div id="detailPrice" class="text-2xl font-extrabold text-primary"></div>
+                    <span id="detailDate" class="text-xs text-slate-400 font-medium"></span>
+                </div>
+
+                <h3 id="detailTitle" class="text-xl font-bold text-slate-900 mb-3"></h3>
+
+                <!-- 5-Level Location Box -->
+                <div class="bg-slate-50 border-l-4 border-primary rounded-r-xl p-3.5 mb-4 text-sm text-slate-700">
+                    <div class="font-bold text-xs uppercase text-slate-400 mb-1">Aho Inzu Iherereye (Inzego 5):</div>
+                    <div id="detailLocation" class="font-medium leading-relaxed"></div>
+                </div>
+
+                <!-- Specs -->
+                <div class="grid grid-cols-3 gap-3 mb-5 text-center">
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                        <div class="text-lg">🛏️</div>
+                        <div id="detailBeds" class="text-sm font-bold text-slate-800 mt-0.5"></div>
+                        <div class="text-[11px] text-slate-500">Ibyumba</div>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                        <div class="text-lg">🚿</div>
+                        <div id="detailBaths" class="text-sm font-bold text-slate-800 mt-0.5"></div>
+                        <div class="text-[11px] text-slate-500">Ubwogero</div>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                        <div class="text-lg">📐</div>
+                        <div id="detailArea" class="text-sm font-bold text-slate-800 mt-0.5"></div>
+                        <div class="text-[11px] text-slate-500">Ubuso</div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-6">
+                    <h4 class="text-sm font-bold text-slate-800 mb-1.5">Ibisobanuro Birambuye:</h4>
+                    <p id="detailDesc" class="text-sm text-slate-600 leading-relaxed"></p>
+                </div>
+
+                <!-- Direct Contact Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-slate-100">
+                    <a id="detailWhatsapp" href="#" target="_blank" class="flex-1 bg-[#25D366] hover:brightness-95 text-white font-bold py-3 px-4 rounded-xl text-center text-sm transition flex items-center justify-center gap-2">
+                        <span>💬</span>
+                        <span>Vugana na Nyirayo kuri WhatsApp</span>
+                    </a>
+                    <a id="detailCall" href="#" class="flex-1 bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-4 rounded-xl text-center text-sm transition flex items-center justify-center gap-2">
+                        <span>📞</span>
+                        <span id="detailPhoneText">Hamagara</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: ADD NEW PROPERTY (+ SHYIRAHO INZU) -->
+    <div id="postModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-xs z-50 hidden items-center justify-center p-4" onclick="closePostOnBackdrop(event)">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-slate-200 p-6">
+            <div class="flex items-center justify-between pb-4 mb-5 border-b border-slate-100">
+                <div>
+                    <h3 class="text-xl font-extrabold text-slate-900">Shyiraho Inzu Kuri Isange</h3>
+                    <p class="text-xs text-slate-500 mt-0.5">Uzuza amakuru y'inzu yawe kugira ngo abakiriya bayibone.</p>
+                </div>
+                <button onclick="closePostModal()" class="text-slate-400 hover:text-slate-700 text-2xl font-bold leading-none cursor-pointer">&times;</button>
+            </div>
+
+            <form id="addPropertyForm" onsubmit="submitNewProperty(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Umutwe w'itangazo *</label>
+                    <input type="text" id="newTitle" required placeholder="Urugero: Inzu nziza yo guturamo i Nyamata" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:border-primary">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Igikorwa *</label>
+                        <select id="newType" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm bg-white focus:outline-none focus:border-primary">
+                            <option value="Gukodesha">Gukodesha (Rent)</option>
+                            <option value="Kugura">Kugura (Buy)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Igiciro (RWF) *</label>
+                        <input type="number" id="newPrice" required min="1000" placeholder="Urugero: 250000" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:border-primary">
+                    </div>
+                </div>
+
+                <!-- 5-Level Location in Form -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80 space-y-3">
+                    <div class="text-xs font-bold text-primary uppercase">Aho Inzu Iherereye (Inzego 5) *</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-500 mb-1">1. Intara / Umujyi</label>
+                            <select id="modalProvince" onchange="handleProvinceChange('modal')" required class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm bg-white focus:outline-none focus:border-primary">
+                                <option value="">Hitamo Intara</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-500 mb-1">2. Akarere</label>
+                            <select id="modalDistrict" onchange="handleDistrictChange('modal')" required disabled class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-primary">
+                                <option value="">Hitamo Akarere</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-500 mb-1">3. Umurenge</label>
+                            <select id="modalSector" onchange="handleSectorChange('modal')" required disabled class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-primary">
+                                <option value="">Hitamo Umurenge</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-500 mb-1">4. Akagari</label>
+                            <select id="modalCell" onchange="handleCellChange('modal')" required disabled class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-primary">
+                                <option value="">Hitamo Akagari</option>
+                            </select>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-[11px] font-semibold text-slate-500 mb-1">5. Umudugudu</label>
+                            <select id="modalVillage" required disabled class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-primary">
+                                <option value="">Hitamo Umudugudu</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Ibyumba *</label>
+                        <input type="number" id="newBeds" value="3" min="1" required class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-primary">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Ubwogero *</label>
+                        <input type="number" id="newBaths" value="2" min="1" required class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-primary">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Ubuso (m²)</label>
+                        <input type="text" id="newArea" placeholder="300 m²" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-primary">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Telefoni / WhatsApp *</label>
+                        <input type="tel" id="newPhone" required placeholder="0788000000" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:border-primary">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Ifoto y'Inzu</label>
+                        <input type="file" id="newImageFile" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Ibisobanuro by'inyongera</label>
+                    <textarea id="newDesc" rows="2" placeholder="Andika ibindi biranga iyi nzu (amazi, umuriro, parking, igipangu...)" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:outline-none focus:border-primary"></textarea>
+                </div>
+
+                <div class="pt-2 flex gap-3">
+                    <button type="button" onclick="closePostModal()" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-3 rounded-xl text-sm transition cursor-pointer">
+                        Hagarika
+                    </button>
+                    <button type="submit" class="w-2/3 bg-primary hover:bg-primary-dark text-white font-bold py-3 rounded-xl text-sm shadow-md transition cursor-pointer">
+                        Ohereza Itangazo Ry'inzu
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION BANNER (No alert() used) -->
+    <div id="toastBanner" class="fixed bottom-5 right-5 z-50 hidden max-w-sm bg-slate-900 text-white px-5 py-4 rounded-2xl shadow-2xl border border-slate-700 items-start gap-3">
+        <span class="text-xl">✅</span>
+        <div class="text-sm">
+            <div id="toastTitle" class="font-bold text-amber-400">Byakunze!</div>
+            <div id="toastMessage" class="text-slate-200 mt-0.5 leading-snug"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#0f172a] text-slate-400 py-10 px-4 mt-12">
+        <div class="max-w-7xl mx-auto text-center space-y-2">
+            <div class="text-xl font-extrabold text-white tracking-tight">
+                🏠 ISANGE<span class="text-secondary">.rw</span>
+            </div>
+            <p class="text-sm">
+                &copy; 2026 <strong class="text-white">ISANGE.rw</strong> - Urubuga rwo gukodesha no kugura inzu mu Ntara zose z'u Rwanda.
+            </p>
+            <p class="text-xs text-slate-500 pt-1">
+                Umujyi wa Kigali • Intara y'Iburasirazuba • Intara y'Amajyaruguru • Intara y'Iburengerazuba • Intara y'Amajyepfo
+            </p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // =========================================================================
+        // 1. INZEGO 5 Z'UBUYOBOZI Z'U RWANDA (Intara -> Akarere -> Umurenge -> Akagari -> Umudugudu)
+        // =========================================================================
+        const rwandaAdminData = {
+            "Umujyi wa Kigali": {
+                "Gasabo": {
+                    "Remera": {
+                        "Rukiri I": ["Amahoro", "Ubumwe", "Gisimenti", "Rebero"],
+                        "Rukiri II": ["Amajyambere", "Urugwiro", "Ruturusu"],
+                        "Nyabisindu": ["Gasabo", "Kagara", "Rugarama"],
+                        "Nyarutarama": ["Gishushu", "Kangondo I", "Kangondo II", "Kamahwa"]
+                    },
+                    "Kimironko": {
+                        "Bibare": ["Inganji", "Imanzi", "Abatarushwa", "Umwezi"],
+                        "Kibagabaga": ["Kageyo", "Karisimbi", "Gasharu", "Ramiro"],
+                        "Nyagatovu": ["Ijabiro", "Itetero", "Urugwiro"]
+                    },
+                    "Kinyinya": {
+                        "Gacuriro": ["Urugwiro", "Akanyamuneza", "Bwerankori"],
+                        "Kagugu": ["Giheka", "Kabuye", "Kadobogo", "Nyakabungo"],
+                        "Gasharu": ["Kami", "Agatare"]
+                    },
+                    "Kacyiru": {
+                        "Kamatamu": ["Amajyambere", "Bukinanyana", "Rugarama"],
+                        "Kamutwa": ["Agasaro", "Gasharu", "Umutekano"],
+                        "Kibaza": ["Ineza", "Virunga"]
+                    }
+                },
+                "Kicukiro": {
+                    "Kanombe": {
+                        "Kabeza": ["Amahoro", "Karama", "Mulindi", "Nyarurembo"],
+                        "Busanza": ["Gasharu", "Nyarugunga", "Rukatsa"],
+                        "Karama": ["Byimana", "Gikundiro"],
+                        "Rubirizi": ["Beninka", "Uwateke"]
+                    },
+                    "Niboye": {
+                        "Niboye": ["Gatare", "Rugarama", "Sovu"],
+                        "Gatare": ["Amahoro", "Rugunga"],
+                        "Nyakabanda": ["Bukinanyana", "Kanyonyomba"]
+                    },
+                    "Gahanga": {
+                        "Gahanga": ["Gahanga", "Rinini", "Ubumwe"],
+                        "Karembure": ["Amahoro", "Bigo", "Karembure"]
+                    },
+                    "Kagarama": {
+                        "Kanserege": ["Byimana", "Ituze"],
+                        "Muyange": ["Rugunga", "Mubuga"]
+                    }
+                },
+                "Nyarugenge": {
+                    "Nyamirambo": {
+                        "Mumena": ["Akabeza", "Ituze", "Kiberinka"],
+                        "Rugarama": ["Kiberinka", "Tetero", "Rusisiro"],
+                        "Cyivugiza": ["Amahoro", "Rugunga"]
+                    },
+                    "Nyarugenge": {
+                        "Kiyovu": ["Amizero", "Cercle Sportif", "Rugunga"],
+                        "Biryogo": ["Gabiro", "Umurimo"]
+                    }
+                }
+            },
+            "Intara y'Iburasirazuba": {
+                "Bugesera": {
+                    "Nyamata": {
+                        "Nyamata Ville": ["Rugarama", "Gashora", "Gatare", "Nyamata I"],
+                        "Kayumba": ["Karama", "Kabeza", "Gihinga"],
+                        "Kanazi": ["Biryogo", "Kabuga", "Rugarama"],
+                        "Maranyundo": ["Gahembe", "Rusagara"]
+                    },
+                    "Mayange": {
+                        "Kagenge": ["Gakamba", "Mbyo", "Rukora"],
+                        "Gakamba": ["Kibenga", "Kamabuye"]
+                    },
+                    "Ntarama": {
+                        "Cyugaro": ["Kanzenze", "Kibungo", "Rugarama"],
+                        "Kanzenze": ["Cyeru", "Ntarama"]
+                    },
+                    "Rilima": {
+                        "Kabeza": ["Karera", "Kimaranzara", "Nyabagendwa"]
+                    }
+                },
+                "Rwamagana": {
+                    "Kigabiro": {
+                        "Cyanya": ["Rugarama", "Sovu", "Nyagasenyi"],
+                        "Sibagire": ["Kigabiro", "Birembo"]
+                    },
+                    "Muhazi": {
+                        "Kitazigurwa": ["Karambi", "Murambi", "Ntebe"]
+                    }
+                },
+                "Kayonza": {
+                    "Mukarange": {
+                        "Kayonza": ["Bwiza", "Mburabuturo", "Nyagatovu"]
+                    }
+                },
+                "Nyagatare": {
+                    "Nyagatare": {
+                        "Nyagatare": ["Barija", "Bushoga", "Cyabayaga", "Rutaraka"]
+                    }
+                }
+            },
+            "Intara y'Amajyaruguru": {
+                "Musanze": {
+                    "Muhoza": {
+                        "Ruhengeri": ["Mpenge", "Kigombe", "Cyabararika"],
+                        "Mpenge": ["Gikwege", "Rukereza"]
+                    },
+                    "Kinigi": {
+                        "Nyabigoma": ["Bisoke", "Kaguhu", "Kampanga"]
+                    }
+                },
+                "Gicumbi": {
+                    "Byumba": {
+                        "Gisuna": ["Gacuriro", "Kibali", "Nyarutarama"]
+                    }
+                }
+            },
+            "Intara y'Iburengerazuba": {
+                "Rubavu": {
+                    "Gisenyi": {
+                        "Bugoyi": ["Kivumu", "Nengo", "Urumuri"],
+                        "Mbugangari": ["Amahoro", "Ihuriro", "Ubumwe"]
+                    },
+                    "Nyamyumba": {
+                        "Brasserie": ["Busoro", "Rubona"]
+                    }
+                },
+                "Rusizi": {
+                    "Kamembe": {
+                        "Cyangugu": ["Kamashangi", "Mont Cyangugu"]
+                    }
+                }
+            },
+            "Intara y'Amajyepfo": {
+                "Huye": {
+                    "Ngoma": {
+                        "Butare": ["Kabutare", "Matyazo", "Buye"]
+                    },
+                    "Tumba": {
+                        "Cyarwa": ["Cyarwa-Sumo", "Mukoni"]
+                    }
+                },
+                "Muhanga": {
+                    "Nyamabuye": {
+                        "Gahogo": ["Gitarama", "Kavumu", "Ruli"]
+                    }
+                }
+            }
+        };
+
+        // =========================================================================
+        // 2. AMAZU Y'URUGERO AGARAGARIRA ABA-USER
+        // =========================================================================
+        let properties = [
+            {
+                id: 1,
+                title: "Inzu Nziza Yo Guturamo i Nyamata (Hafi ya Kaburimbo)",
+                type: "Gukodesha",
+                price: 250000,
+                province: "Intara y'Iburasirazuba",
+                district: "Bugesera",
+                sector: "Nyamata",
+                cell: "Nyamata Ville",
+                village: "Rugarama",
+                beds: 3,
+                baths: 2,
+                area: "320 m²",
+                phone: "250788123456",
+                image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=900&q=80",
+                description: "Inzu nshya kandi isukuye cyane iherereye i Nyamata mu mudugudu wa Rugarama. Ifite igipangu kigari, parking y'imodoka 2, amazi ahoraho (ikigega), n'igikoni cyo mu nzu.",
+                postedAt: "Yashyizweho vuba"
+            },
+            {
+                id: 2,
+                title: "Inzu Igezweho Igurishwa i Kabeza",
+                type: "Kugura",
+                price: 68000000,
+                province: "Umujyi wa Kigali",
+                district: "Kicukiro",
+                sector: "Kanombe",
+                cell: "Kabeza",
+                village: "Amahoro",
+                beds: 4,
+                baths: 3,
+                area: "450 m²",
+                phone: "250788234567",
+                image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+                description: "Inzu yubatswe mu buryo bugezweho i Kabeza mu mudugudu w'Amahoro, hafi y'isoko n'umuhanda wa kaburimbo. Ifite ibyumba 4 binini, salon ngari, n'inzu y'umukozi hanze.",
+                postedAt: "Yashyizweho uyu munsi"
+            },
+            {
+                id: 3,
+                title: "Apartment Nziza i Kibagabaga",
+                type: "Gukodesha",
+                price: 450000,
+                province: "Umujyi wa Kigali",
+                district: "Gasabo",
+                sector: "Kimironko",
+                cell: "Kibagabaga",
+                village: "Kageyo",
+                beds: 2,
+                baths: 2,
+                area: "180 m²",
+                phone: "250788345678",
+                image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80",
+                description: "Apartment ituje cyane i Kibagabaga mu mudugudu wa Kageyo. Ifite umutekano usesuye amasaha 24/7, internet yihuta, na balcony yitegeye umujyi.",
+                postedAt: "Hashize iminsi 2"
+            },
+            {
+                id: 4,
+                title: "Inzu Nini ya Famille i Remera (Gisimenti)",
+                type: "Gukodesha",
+                price: 380000,
+                province: "Umujyi wa Kigali",
+                district: "Gasabo",
+                sector: "Remera",
+                cell: "Rukiri I",
+                village: "Gisimenti",
+                beds: 4,
+                baths: 2,
+                area: "350 m²",
+                phone: "250788456789",
+                image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=900&q=80",
+                description: "Inzu iherereye ahantu heza cyane i Remera hafi y'ibikorwaremezo byose (amashuri, amavuriro, na gare). Ikwiye umuryango cyangwa ibiro (office).",
+                postedAt: "Hashize iminsi 3"
+            },
+            {
+                id: 5,
+                title: "Villa Nziza i Musanze (Hafi ya Ibirunga)",
+                type: "Kugura",
+                price: 55000000,
+                province: "Intara y'Amajyaruguru",
+                district: "Musanze",
+                sector: "Muhoza",
+                cell: "Ruhengeri",
+                village: "Mpenge",
+                beds: 4,
+                baths: 3,
+                area: "500 m²",
+                phone: "250788567890",
+                image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=80",
+                description: "Villa nziza cyane i Musanze mu mudugudu wa Mpenge, ifite ubusitani bunini n'ikirere cyiza cyane. Ibyangombwa byose by'ubutaka biruzuye.",
+                postedAt: "Hashize iminsi 4"
+            },
+            {
+                id: 6,
+                title: "Inzu Yo Guturamo i Rubavu (Hafi y'Ikiyaga cya Kivu)",
+                type: "Gukodesha",
+                price: 300000,
+                province: "Intara y'Iburengerazuba",
+                district: "Rubavu",
+                sector: "Gisenyi",
+                cell: "Bugoyi",
+                village: "Kivumu",
+                beds: 3,
+                baths: 2,
+                area: "280 m²",
+                phone: "250788678901",
+                image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=900&q=80",
+                description: "Inzu nziza i Gisenyi hafi y'ikiyaga cya Kivu. Ifite igipangu kiza, ubusitani, n'ibyumba bigari birimo umwuka mwiza.",
+                postedAt: "Hashize iminsi 5"
+            }
+        ];
+
+        // =========================================================================
+        // 3. GUTANGIZA DROPDOWNS N'URUTONDE RW'AMAZU
+        // =========================================================================
+        window.onload = function () {
+            populateProvinces('provinceSelect');
+            populateProvinces('modalProvince');
+            renderProperties(properties);
+        };
+
+        function populateProvinces(selectId) {
+            const sel = document.getElementById(selectId);
+            if (!sel) return;
+            Object.keys(rwandaAdminData).forEach(prov => {
+                const opt = document.createElement('option');
+                opt.value = prov;
+                opt.textContent = prov;
+                sel.appendChild(opt);
+            });
+        }
+
+        function handleProvinceChange(prefix) {
+            const pId = prefix === 'search' ? 'provinceSelect' : 'modalProvince';
+            const dId = prefix === 'search' ? 'districtSelect' : 'modalDistrict';
+            const sId = prefix === 'search' ? 'sectorSelect' : 'modalSector';
+            const cId = prefix === 'search' ? 'cellSelect' : 'modalCell';
+            const vId = prefix === 'search' ? 'villageSelect' : 'modalVillage';
+
+            const prov = document.getElementById(pId).value;
+            resetSelect(dId, prefix === 'search' ? "-- Hitamo Akarere --" : "Hitamo Akarere");
+            resetSelect(sId, prefix === 'search' ? "-- Hitamo Umurenge --" : "Hitamo Umurenge");
+            resetSelect(cId, prefix === 'search' ? "-- Hitamo Akagari --" : "Hitamo Akagari");
+            resetSelect(vId, prefix === 'search' ? "-- Hitamo Umudugudu --" : "Hitamo Umudugudu");
+
+            if (prov && rwandaAdminData[prov]) {
+                const distSel = document.getElementById(dId);
+                distSel.disabled = false;
+                Object.keys(rwandaAdminData[prov]).forEach(dist => {
+                    const opt = document.createElement('option');
+                    opt.value = dist;
+                    opt.textContent = dist;
+                    distSel.appendChild(opt);
+                });
+            }
+        }
+
+        function handleDistrictChange(prefix) {
+            const pId = prefix === 'search' ? 'provinceSelect' : 'modalProvince';
+            const dId = prefix === 'search' ? 'districtSelect' : 'modalDistrict';
+            const sId = prefix === 'search' ? 'sectorSelect' : 'modalSector';
+            const cId = prefix === 'search' ? 'cellSelect' : 'modalCell';
+            const vId = prefix === 'search' ? 'villageSelect' : 'modalVillage';
+
+            const prov = document.getElementById(pId).value;
+            const dist = document.getElementById(dId).value;
+            resetSelect(sId, prefix === 'search' ? "-- Hitamo Umurenge --" : "Hitamo Umurenge");
+            resetSelect(cId, prefix === 'search' ? "-- Hitamo Akagari --" : "Hitamo Akagari");
+            resetSelect(vId, prefix === 'search' ? "-- Hitamo Umudugudu --" : "Hitamo Umudugudu");
+
+            if (dist && rwandaAdminData[prov] && rwandaAdminData[prov][dist]) {
+                const secSel = document.getElementById(sId);
+                secSel.disabled = false;
+                Object.keys(rwandaAdminData[prov][dist]).forEach(sec => {
+                    const opt = document.createElement('option');
+                    opt.value = sec;
+                    opt.textContent = sec;
+                    secSel.appendChild(opt);
+                });
+            }
+        }
+
+        function handleSectorChange(prefix) {
+            const pId = prefix === 'search' ? 'provinceSelect' : 'modalProvince';
+            const dId = prefix === 'search' ? 'districtSelect' : 'modalDistrict';
+            const sId = prefix === 'search' ? 'sectorSelect' : 'modalSector';
+            const cId = prefix === 'search' ? 'cellSelect' : 'modalCell';
+            const vId = prefix === 'search' ? 'villageSelect' : 'modalVillage';
+
+            const prov = document.getElementById(pId).value;
+            const dist = document.getElementById(dId).value;
+            const sec = document.getElementById(sId).value;
+            resetSelect(cId, prefix === 'search' ? "-- Hitamo Akagari --" : "Hitamo Akagari");
+            resetSelect(vId, prefix === 'search' ? "-- Hitamo Umudugudu --" : "Hitamo Umudugudu");
+
+            if (sec && rwandaAdminData[prov]?.[dist]?.[sec]) {
+                const cellSel = document.getElementById(cId);
+                cellSel.disabled = false;
+                Object.keys(rwandaAdminData[prov][dist][sec]).forEach(cell => {
+                    const opt = document.createElement('option');
+                    opt.value = cell;
+                    opt.textContent = cell;
+                    cellSel.appendChild(opt);
+                });
+            }
+        }
+
+        function handleCellChange(prefix) {
+            const pId = prefix === 'search' ? 'provinceSelect' : 'modalProvince';
+            const dId = prefix === 'search' ? 'districtSelect' : 'modalDistrict';
+            const sId = prefix === 'search' ? 'sectorSelect' : 'modalSector';
+            const cId = prefix === 'search' ? 'cellSelect' : 'modalCell';
+            const vId = prefix === 'search' ? 'villageSelect' : 'modalVillage';
+
+            const prov = document.getElementById(pId).value;
+            const dist = document.getElementById(dId).value;
+            const sec = document.getElementById(sId).value;
+            const cell = document.getElementById(cId).value;
+            resetSelect(vId, prefix === 'search' ? "-- Hitamo Umudugudu --" : "Hitamo Umudugudu");
+
+            if (cell && rwandaAdminData[prov]?.[dist]?.[sec]?.[cell]) {
+                const vilSel = document.getElementById(vId);
+                vilSel.disabled = false;
+                rwandaAdminData[prov][dist][sec][cell].forEach(vil => {
+                    const opt = document.createElement('option');
+                    opt.value = vil;
+                    opt.textContent = vil;
+                    vilSel.appendChild(opt);
+                });
+            }
+        }
+
+        function resetSelect(id, defaultText) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.innerHTML = `<option value="">${defaultText}</option>`;
+            el.disabled = true;
+        }
+
+        // =========================================================================
+        // 4. KWEREKANA AMAZU NO GUSHAKISHA
+        // =========================================================================
+        function formatPhoneForDisplay(rawPhone) {
+            const clean = rawPhone.replace(/\D/g, '');
+            if (clean.startsWith('250') && clean.length === 12) {
+                return '0' + clean.slice(3, 6) + ' ' + clean.slice(6, 9) + ' ' + clean.slice(9);
+            }
+            return rawPhone;
+        }
+
+        function formatPhoneForLink(rawPhone) {
+            const clean = rawPhone.replace(/\D/g, '');
+            if (clean.startsWith('07') && clean.length === 10) {
+                return '25' + clean;
+            }
+            return clean;
+        }
+
+        function renderProperties(list) {
+            const grid = document.getElementById('propertiesGrid');
+            const countBadge = document.getElementById('countBadge');
+            countBadge.textContent = `Amazu ${list.length}`;
+
+            if (list.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full bg-white rounded-2xl border border-slate-200 p-10 text-center shadow-xs">
+                        <div class="text-4xl mb-3">🏘️</div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">Nta nzu ibonetse muri ako gace wahisemo</h3>
+                        <p class="text-sm text-slate-500 mb-5">Gerageza guhindura agace cyangwa ukande hasi kugira ngo urebe amazu yose aboneka.</p>
+                        <button onclick="resetFilters()" class="bg-primary hover:bg-primary-dark text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition cursor-pointer">
+                            Erekana amazu yose
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = list.map(item => {
+                const isRent = item.type === 'Gukodesha';
+                const badgeClass = isRent ? 'bg-primary' : 'bg-red-600';
+                const priceText = Number(item.price).toLocaleString() + ' RWF' + (isRent ? ' / ukwezi' : '');
+                const waPhone = formatPhoneForLink(item.phone);
+                const waMessage = encodeURIComponent(`Muraho! Nabonye inzu yanyu "${item.title}" kuri ISANGE.rw (${item.district}, ${item.sector}). Nifuza ibindi bisobanuro.`);
+
+                return `
+                    <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-200/80 transition-all duration-300 flex flex-col group">
+                        <!-- Image -->
+                        <div class="relative h-56 overflow-hidden bg-slate-200 cursor-pointer" onclick="openDetailsModal(${item.id})">
+                            <span class="absolute top-3 left-3 z-10 ${badgeClass} text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                                ${item.type}
+                            </span>
+                            <span class="absolute bottom-3 right-3 z-10 bg-slate-900/70 backdrop-blur-xs text-white text-[11px] font-medium px-2.5 py-1 rounded-lg">
+                                ${item.postedAt || 'Vuba'}
+                            </span>
+                            <img src="${item.image}" alt="${item.title}" onerror="this.src='https://placehold.co/800x500/0f766e/ffffff?text=ISANGE.rw'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="p-5 flex-grow flex flex-col">
+                            <div class="text-xl font-extrabold text-primary mb-1">${priceText}</div>
+                            <h3 onclick="openDetailsModal(${item.id})" class="text-base font-bold text-slate-900 mb-3 line-clamp-1 hover:text-primary cursor-pointer transition">
+                                ${item.title}
+                            </h3>
+
+                            <!-- Location Tag -->
+                            <div class="bg-slate-50 border-l-3 border-primary rounded-r-lg px-3 py-2 text-xs text-slate-700 mb-3.5">
+                                📍 <span class="font-medium">${item.district}</span> • ${item.sector} • ${item.cell} • <strong class="text-slate-900">${item.village}</strong>
+                            </div>
+
+                            <!-- Features -->
+                            <div class="flex items-center justify-between text-xs font-medium text-slate-500 border-t border-slate-100 pt-3 mb-4">
+                                <span>🛏️ Ibyumba: <strong class="text-slate-800">${item.beds}</strong></span>
+                                <span>🚿 Ubwogero: <strong class="text-slate-800">${item.baths}</strong></span>
+                                <span>📐 Ubuso: <strong class="text-slate-800">${item.area || 'N/A'}</strong></span>
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="mt-auto space-y-2">
+                                <button onclick="openDetailsModal(${item.id})" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs py-2.5 rounded-xl transition cursor-pointer">
+                                    👁️ Reba Birambuye
+                                </button>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <a href="https://wa.me/${waPhone}?text=${waMessage}" target="_blank" class="bg-[#25D366] hover:brightness-95 text-white font-bold text-xs py-2.5 px-3 rounded-xl text-center transition flex items-center justify-center gap-1.5">
+                                        <span>💬</span>
+                                        <span>WhatsApp</span>
+                                    </a>
+                                    <a href="tel:+${waPhone}" class="bg-primary/10 hover:bg-primary/20 text-primary font-bold text-xs py-2.5 px-3 rounded-xl text-center transition flex items-center justify-center gap-1.5">
+                                        <span>📞</span>
+                                        <span>Hamagara</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        function filterProperties() {
+            const type = document.getElementById('filterType').value;
+            const prov = document.getElementById('provinceSelect').value;
+            const dist = document.getElementById('districtSelect').value;
+            const sec = document.getElementById('sectorSelect').value;
+            const cell = document.getElementById('cellSelect').value;
+            const vil = document.getElementById('villageSelect').value;
+            const keyword = document.getElementById('keywordSearch').value.trim().toLowerCase();
+
+            const filtered = properties.filter(p => {
+                const matchKeyword = !keyword ||
+                    p.title.toLowerCase().includes(keyword) ||
+                    p.district.toLowerCase().includes(keyword) ||
+                    p.sector.toLowerCase().includes(keyword) ||
+                    p.cell.toLowerCase().includes(keyword) ||
+                    p.village.toLowerCase().includes(keyword) ||
+                    (p.description && p.description.toLowerCase().includes(keyword));
+
+                return (type === 'all' || p.type === type) &&
+                    (!prov || p.province === prov) &&
+                    (!dist || p.district === dist) &&
+                    (!sec || p.sector === sec) &&
+                    (!cell || p.cell === cell) &&
+                    (!vil || p.village === vil) &&
+                    matchKeyword;
+            });
+
+            const titleEl = document.getElementById('resultsTitle');
+            if (prov || type !== 'all' || keyword) {
+                titleEl.textContent = "Ibisubizo by'Ishakisha";
+            } else {
+                titleEl.textContent = "Amazu Aboneka Kuri Isange";
+            }
+
+            renderProperties(filtered);
+        }
+
+        function quickFilterType(type) {
+            document.getElementById('filterType').value = type;
+            filterProperties();
+        }
+
+        function resetFilters() {
+            document.getElementById('filterType').value = 'all';
+            document.getElementById('provinceSelect').value = '';
+            document.getElementById('keywordSearch').value = '';
+            handleProvinceChange('search');
+            document.getElementById('resultsTitle').textContent = "Amazu Aboneka Kuri Isange";
+            renderProperties(properties);
+        }
+
+        // Allow Enter key on keyword search
+        document.getElementById('keywordSearch').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                filterProperties();
+            }
+        });
+
+        // =========================================================================
+        // 5. MODAL: REBA BIRAMBUYE (DETAILS)
+        // =========================================================================
+        function openDetailsModal(id) {
+            const prop = properties.find(p => p.id === id);
+            if (!prop) return;
+
+            const isRent = prop.type === 'Gukodesha';
+            const badge = document.getElementById('detailBadge');
+            badge.textContent = prop.type;
+            badge.className = `absolute top-3 left-3 px-3.5 py-1 rounded-full text-xs font-bold text-white shadow ${isRent ? 'bg-primary' : 'bg-red-600'}`;
+
+            document.getElementById('detailImg').src = prop.image;
+            document.getElementById('detailPrice').textContent = Number(prop.price).toLocaleString() + ' RWF' + (isRent ? ' / ukwezi' : '');
+            document.getElementById('detailDate').textContent = prop.postedAt || 'Vuba';
+            document.getElementById('detailTitle').textContent = prop.title;
+            document.getElementById('detailLocation').innerHTML = `
+                ${prop.province} &rarr; <strong>${prop.district}</strong> &rarr; ${prop.sector} &rarr; ${prop.cell} &rarr; <span class="text-primary font-bold">${prop.village}</span>
+            `;
+            document.getElementById('detailBeds').textContent = prop.beds;
+            document.getElementById('detailBaths').textContent = prop.baths;
+            document.getElementById('detailArea').textContent = prop.area || 'N/A';
+            document.getElementById('detailDesc').textContent = prop.description || 'Inzu nziza kandi isukuye, yiteguye guturwamo. Vugana na nyirayo ku murongo uri hasi.';
+
+            const waPhone = formatPhoneForLink(prop.phone);
+            const waMessage = encodeURIComponent(`Muraho! Nabonye inzu yanyu "${prop.title}" kuri ISANGE.rw (${prop.district}, ${prop.sector}). Nifuza ibindi bisobanuro.`);
+            document.getElementById('detailWhatsapp').href = `https://wa.me/${waPhone}?text=${waMessage}`;
+            document.getElementById('detailCall').href = `tel:+${waPhone}`;
+            document.getElementById('detailPhoneText').textContent = `Hamagara (${formatPhoneForDisplay(prop.phone)})`;
+
+            const modal = document.getElementById('detailsModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeDetailsModal() {
+            const modal = document.getElementById('detailsModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function closeDetailsOnBackdrop(e) {
+            if (e.target.id === 'detailsModal') closeDetailsModal();
+        }
+
+        // =========================================================================
+        // 6. MODAL: SHYIRAHO INZU NSHYA (USER SUBMISSION)
+        // =========================================================================
+        function openPostModal() {
+            const modal = document.getElementById('postModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closePostModal() {
+            const modal = document.getElementById('postModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function closePostOnBackdrop(e) {
+            if (e.target.id === 'postModal') closePostModal();
+        }
+
+        function submitNewProperty(e) {
+            e.preventDefault();
+
+            const fileInput = document.getElementById('newImageFile');
+            const imgUrl = fileInput.files.length > 0
+                ? URL.createObjectURL(fileInput.files[0])
+                : "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80";
+
+            const newProp = {
+                id: Date.now(),
+                title: document.getElementById('newTitle').value.trim(),
+                type: document.getElementById('newType').value,
+                price: Number(document.getElementById('newPrice').value),
+                province: document.getElementById('modalProvince').value,
+                district: document.getElementById('modalDistrict').value,
+                sector: document.getElementById('modalSector').value,
+                cell: document.getElementById('modalCell').value,
+                village: document.getElementById('modalVillage').value,
+                beds: Number(document.getElementById('newBeds').value),
+                baths: Number(document.getElementById('newBaths').value),
+                area: document.getElementById('newArea').value.trim() || "250 m²",
+                phone: document.getElementById('newPhone').value.trim(),
+                image: imgUrl,
+                description: document.getElementById('newDesc').value.trim() || "Inzu nziza iboneka kuri ISANGE.rw.",
+                postedAt: "Ubu nyine"
+            };
+
+            properties.unshift(newProp);
+            document.getElementById('addPropertyForm').reset();
+            handleProvinceChange('modal');
+            closePostModal();
+            resetFilters();
+
+            showToast("Inzu Yashyizweho!", `"${newProp.title}" ubu iragaragarira abakiriya bose kuri ISANGE.rw.`);
+        }
+
+        function showToast(title, message) {
+            const toast = document.getElementById('toastBanner');
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastMessage').textContent = message;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 4500);
+        }
+    </script>
+</body>
+</html>
